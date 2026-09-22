@@ -6,7 +6,15 @@ import { expect, test } from "@playwright/test";
  * Cakupan bertambah tiap fase. Phase 1 baru menguji shell dan halaman kosong.
  */
 
-const ROUTES = ["/", "/search?q=laskar", "/my-books", "/about"];
+const ROUTES = [
+  "/",
+  "/search?q=laskar",
+  "/search?q=orwell&lang=id",
+  "/search?q=pachinko&lang=id",
+  "/search?q=zzzqqqxxx",
+  "/my-books",
+  "/about",
+];
 
 for (const route of ROUTES) {
   test(`axe bersih di ${route}`, async ({ page }) => {

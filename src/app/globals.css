@@ -19,13 +19,13 @@
 
   /* Garis */
   --line: #e5e3dd;
-  --line-strong: #cfccc4;
+  --line-strong: #918d84;
 
   /* Teks */
   --ink-900: #1a1a18;
   --ink-700: #3f3e3a;
   --ink-500: #615f59;
-  --ink-400: #7c7a73;
+  --ink-400: #747269;
 
   /* Aksen */
   --accent-700: #1f4a3d;
@@ -40,7 +40,7 @@
   --lang-other-fg: #4a4842;
 
   /* Rating */
-  --rating-fill: #d99512;
+  --rating-fill: #bf8100;
   --rating-text: #57451f;
 
   /* Semantik */
@@ -95,7 +95,7 @@
     --surface-sunken: #24251d;
 
     --line: #32332a;
-    --line-strong: #494a3f;
+    --line-strong: #6f7063;
 
     --ink-900: #f4f3ec;
     --ink-700: #dad8ce;
@@ -135,7 +135,7 @@
   --surface-sunken: #24251d;
 
   --line: #32332a;
-  --line-strong: #494a3f;
+  --line-strong: #6f7063;
 
   --ink-900: #f4f3ec;
   --ink-700: #dad8ce;
