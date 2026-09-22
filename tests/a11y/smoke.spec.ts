@@ -52,3 +52,15 @@ test("axe bersih saat drawer edisi terbuka", async ({ page }) => {
     [],
   );
 });
+
+test("urutan heading tidak melompat di halaman utama", async ({ page }) => {
+  for (const route of ["/", "/search?q=laskar", "/book/laskar-pelangi", "/my-books"]) {
+    await page.goto(route);
+
+    const results = await new AxeBuilder({ page }).withRules(["heading-order"]).analyze();
+    expect(
+      results.violations.map((v) => v.nodes.map((n) => n.target.join(" "))).flat(),
+      `heading melompat di ${route}`,
+    ).toEqual([]);
+  }
+});

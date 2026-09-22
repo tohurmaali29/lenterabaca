@@ -32,6 +32,8 @@ test("edisi terpilih disebut di setiap kartu (prinsip edition-aware)", async ({ 
 
 test("filter bahasa tercermin di URL dan tombol back mengembalikannya (R-04)", async ({ page }) => {
   await page.goto("/search?q=orwell");
+  // Tunggu hasil benar-benar dirender, bukan skeleton L-01.
+  await expect(page.getByRole("article").first()).toBeVisible();
   const before = await page.getByRole("article").count();
 
   await page.getByRole("button", { name: "Bahasa Indonesia" }).click();
@@ -87,5 +89,7 @@ test("query tanpa kecocokan menawarkan yang mendekati (E-03) atau menyatakan kos
 
 test("judul berbahasa lain diberi atribut lang (21.2)", async ({ page }) => {
   await page.goto("/search?q=kokoro");
-  await expect(page.locator("h3 a[lang='ja']").first()).toBeVisible();
+  // Tingkat heading kartu menyesuaikan konteks halaman, jadi selector-nya
+  // tidak mengunci h3.
+  await expect(page.locator("a[lang='ja']").first()).toBeVisible();
 });

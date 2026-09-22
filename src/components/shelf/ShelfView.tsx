@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 
+import { BookCover } from "@/components/book/BookCover";
 import { LanguageBadge } from "@/components/edition/LanguageBadge";
 import { SHELF_STATUSES, shelfStatusLabel } from "@/components/shelf/ShelfButton";
 import { EmptyState } from "@/components/ui/EmptyState";
@@ -101,14 +102,12 @@ export function ShelfView({ lookup }: { lookup: Record<string, EditionLookup> })
                 key={item.workId}
                 className="flex gap-4 rounded-lg border border-line bg-surface-alt p-4"
               >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+                <BookCover
                   src={info.coverUrl}
                   alt=""
-                  width={400}
-                  height={600}
-                  loading="lazy"
-                  className="cover-sm shrink-0 rounded-sm bg-surface-sunken"
+                  title={info.editionTitle}
+                  publisherName={info.publisherName}
+                  size="sm"
                 />
 
                 <div className="flex min-w-0 flex-col gap-1">
