@@ -111,9 +111,9 @@ Keputusan dokumen dipasang sebagai guard supaya tidak bisa bocor diam-diam:
 | Pemeriksaan                  | Hasil                                         |
 | ---------------------------- | --------------------------------------------- |
 | Unit test                    | 128 lolos                                     |
-| End-to-end dan aksesibilitas | 71 lolos                                      |
-| Lighthouse Accessibility     | 100 di `/`, `/search`, `/book/[slug]`         |
-| Lighthouse Performance       | 100, 100, 98                                  |
+| End-to-end dan aksesibilitas | 77 lolos                                      |
+| Lighthouse Accessibility     | 100 di kelima halaman                         |
+| Lighthouse Performance       | 95 sampai 100                                 |
 | Lighthouse Best Practices    | 100                                           |
 | Scroll horizontal            | Tidak ada di 320, 375, 768, 1024, dan 1440 px |
 
