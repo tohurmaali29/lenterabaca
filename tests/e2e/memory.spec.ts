@@ -93,8 +93,14 @@ test("pencarian tanpa hasil mencatat empty state yang muncul", async ({ page }) 
 
 test("log bisa dilihat dan direset dari halaman Tentang project", async ({ page }) => {
   await page.goto("/search?q=laskar");
-  // Telemetry dicatat di effect, jadi hasil ditunggu tampil dulu.
-  await expect(page.getByRole("article").first()).toBeVisible();
+
+  // Telemetry ditulis di effect setelah hidrasi. Menunggu hasil tampil saja
+  // tidak cukup, karena HTML sudah dirender server sebelum effect berjalan.
+  // Yang ditunggu adalah event benar-benar tertulis ke storage.
+  await page.waitForFunction(() => {
+    const raw = window.localStorage.getItem("gr:v1:events");
+    return !!raw && raw.includes("search_submitted");
+  });
 
   await page.goto("/about");
 
