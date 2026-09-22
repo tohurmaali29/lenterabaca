@@ -22,6 +22,34 @@ export interface Store<T> {
   status(): StoreStatus;
 }
 
+/**
+ * Status penulisan terakhir, dipantau satu komponen di shell.
+ *
+ * Tanpa ini, kegagalan menulis karena kuota penuh hanya terlihat sebagai
+ * "aksinya seperti tidak terjadi apa-apa", yang jauh lebih membingungkan
+ * daripada pesan yang jujur (RnD X-03).
+ */
+const writeListeners = new Set<() => void>();
+let lastWriteResult: WriteResult | null = null;
+
+export const writeStatusStore = {
+  getSnapshot: (): WriteResult | null => lastWriteResult,
+  getServerSnapshot: (): WriteResult | null => null,
+  subscribe(listener: () => void) {
+    writeListeners.add(listener);
+    return () => writeListeners.delete(listener);
+  },
+  clear() {
+    lastWriteResult = null;
+    for (const listener of writeListeners) listener();
+  },
+};
+
+function reportWrite(result: WriteResult) {
+  lastWriteResult = result;
+  for (const listener of writeListeners) listener();
+}
+
 export interface StoreStatus {
   /** true bila data di storage pernah rusak dan dipulihkan (X-04). */
   recovered: boolean;
@@ -81,6 +109,7 @@ function createStore<T>(key: string, guard: Guard<T>, empty: T, seed: () => T): 
     set(next) {
       cache = next;
       lastWrite = write(key, next);
+      reportWrite(lastWrite);
       notify();
       return lastWrite;
     },

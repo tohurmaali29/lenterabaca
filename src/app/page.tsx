@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { BookCard } from "@/components/book/BookCard";
 import { LanguageBadge } from "@/components/edition/LanguageBadge";
+import { RecentSearches } from "@/components/search/RecentSearches";
 import { SearchBar } from "@/components/search/SearchBar";
 import { catalogStats } from "@/data/catalog";
 import { popularWorks } from "@/lib/search/query";
@@ -30,6 +31,8 @@ export default function DiscoveryPage() {
         <div className="mt-6">
           <SearchBar size="hero" />
         </div>
+
+        <RecentSearches />
 
         <p className="mt-4 text-sm text-ink-400">
           {formatCount(catalogStats.workCount)} karya, {formatCount(catalogStats.editionCount)}{" "}

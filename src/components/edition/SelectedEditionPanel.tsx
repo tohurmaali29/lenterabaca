@@ -71,6 +71,7 @@ export function SelectedEditionPanel({
         </div>
 
         <EditionSelector
+          workId={work.id}
           editions={editions}
           selectedId={edition.id}
           workTitle={work.originalTitle}

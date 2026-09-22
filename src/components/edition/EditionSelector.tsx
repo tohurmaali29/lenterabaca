@@ -9,6 +9,7 @@ import { useMemo, useState } from "react";
 import { EditionRowContent } from "@/components/edition/EditionRow";
 import { cn } from "@/lib/cn";
 import { formatName, languageName } from "@/lib/format";
+import { logEvent, rememberEdition } from "@/lib/stores";
 import type { Edition, EditionId } from "@/lib/types";
 
 /**
@@ -31,12 +32,14 @@ export interface PublisherOption {
 }
 
 export function EditionSelector({
+  workId,
   editions,
   selectedId,
   workTitle,
   publishers,
   triggerLabel,
 }: {
+  workId: string;
   editions: Edition[];
   selectedId: EditionId;
   workTitle: string;
@@ -56,7 +59,10 @@ export function EditionSelector({
   // Dilakukan di handler pembuka, bukan di effect, supaya tidak memicu
   // render berantai (react-hooks/set-state-in-effect).
   function handleOpenChange(next: boolean) {
-    if (next) setDraft(selectedId);
+    if (next) {
+      setDraft(selectedId);
+      logEvent("edition_selector_opened", { workId, editionCount: editions.length });
+    }
     setOpen(next);
   }
 
@@ -72,9 +78,18 @@ export function EditionSelector({
 
   function apply() {
     setOpen(false);
-    if (draft !== selectedId) {
-      router.push(`${pathname}?edition=${draft}`, { scroll: false });
-    }
+    if (draft === selectedId) return;
+
+    const chosen = editions.find((item) => item.id === draft);
+    rememberEdition(workId, draft);
+    logEvent("edition_changed", {
+      workId,
+      fromEditionId: selectedId,
+      toEditionId: draft,
+      toLanguage: chosen?.language ?? null,
+    });
+
+    router.push(`${pathname}?edition=${draft}`, { scroll: false });
   }
 
   return (

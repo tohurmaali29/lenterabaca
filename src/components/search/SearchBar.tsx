@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useId, useState } from "react";
 
 import { cn } from "@/lib/cn";
+import { rememberSearch } from "@/lib/stores";
 
 type SearchBarProps = {
   /** hero = elemen utama halaman discovery. compact = di dalam header. */
@@ -31,6 +32,8 @@ export function SearchBar({ size = "compact", defaultValue = "", className }: Se
     const query = value.trim();
     // RnD 26.6: panjang query minimum 2 karakter (empty state E-02).
     if (query.length < 2) return;
+
+    rememberSearch(query);
     router.push(`/search?q=${encodeURIComponent(query)}`);
   }
 

@@ -5,6 +5,7 @@ import { HeaderSearchSlot } from "@/components/shell/HeaderSearchSlot";
 import { SkipLink } from "@/components/shell/SkipLink";
 import { StorageBanner } from "@/components/shell/StorageBanner";
 import { ThemeToggle } from "@/components/shell/ThemeToggle";
+import { WriteNotice } from "@/components/shell/WriteNotice";
 
 /**
  * Shell tunggal untuk seluruh route.
@@ -18,6 +19,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
     <>
       <SkipLink />
       <StorageBanner />
+      <WriteNotice />
 
       <header
         className="sticky top-0 border-b border-line bg-surface/95 backdrop-blur"

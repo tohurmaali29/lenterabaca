@@ -6,7 +6,7 @@ import { useState } from "react";
 import { useHydrated, useStore } from "@/hooks/useStore";
 import { formatDate } from "@/lib/format";
 import { clearAll } from "@/lib/storage";
-import { eventStore } from "@/lib/stores";
+import { eventStore, logEvent } from "@/lib/stores";
 
 /**
  * Alat demo. RnD bagian 27.2 (reset) dan bagian 30 (log aktivitas).
@@ -19,6 +19,7 @@ export function DemoTools() {
   const hydrated = useHydrated();
   const events = useStore(eventStore);
   const [confirming, setConfirming] = useState(false);
+  const [marker, setMarker] = useState("T1");
 
   if (!hydrated) {
     return <div aria-busy="true" className="h-40 animate-pulse rounded-lg bg-surface-sunken" />;
@@ -79,6 +80,27 @@ export function DemoTools() {
             Reset data demo
           </button>
         )}
+      </div>
+
+      {/* RnD 32.1: fasilitator menekan penanda ini di antara task, supaya log
+          bisa dipotong per task saat dianalisis. */}
+      <div className="flex flex-wrap items-end gap-2 rounded-lg border border-line p-3">
+        <label className="flex flex-col gap-1 text-sm text-ink-700">
+          <span className="font-medium">Penanda task</span>
+          <input
+            value={marker}
+            onChange={(event) => setMarker(event.target.value)}
+            className="h-9 w-24 rounded-md border border-line-strong bg-surface px-2 text-sm text-ink-900"
+          />
+        </label>
+        <button
+          type="button"
+          onClick={() => logEvent("task_marker", { label: marker })}
+          className="inline-flex tap-target items-center rounded-md border border-line-strong px-4 text-body text-ink-700 hover:bg-surface-alt"
+        >
+          Tandai mulai task
+        </button>
+        <p className="text-sm text-ink-500">Dipakai fasilitator saat usability test.</p>
       </div>
 
       {confirming && (
