@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 
 import { WorkHero } from "@/components/book/WorkHero";
 import { EditionAnnouncer } from "@/components/edition/EditionAnnouncer";
+import { EditionMemory } from "@/components/edition/EditionMemory";
 import { SelectedEditionPanel } from "@/components/edition/SelectedEditionPanel";
 import { ReviewSection } from "@/components/review/ReviewSection";
 import { ShelfButton } from "@/components/shelf/ShelfButton";
@@ -120,6 +121,12 @@ export default async function BookDetailPage(props: PageProps<"/book/[slug]">) {
         edition={edition}
         editions={editions}
         publishers={publisherOptions}
+      />
+
+      <EditionMemory
+        workId={work.id}
+        currentEditionId={edition.id}
+        validEditionIds={editions.map((item) => item.id as string)}
       />
 
       <EditionAnnouncer

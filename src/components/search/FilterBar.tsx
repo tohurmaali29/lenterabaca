@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/cn";
 import { formatCount, formatName, languageName } from "@/lib/format";
 import type { SortKey } from "@/lib/search/query";
+import { logEvent } from "@/lib/stores";
 import type { Format, LangCode } from "@/lib/types";
 
 /**
@@ -58,6 +59,7 @@ export function FilterBar({
   const activeSort = (params.get("sort") as SortKey | null) ?? "relevance";
 
   function update(key: string, value: string) {
+    logEvent("filter_changed", { field: key, value, resultCount });
     const next = new URLSearchParams(params.toString());
     if (value === "all" || value === "relevance") next.delete(key);
     else next.set(key, value);

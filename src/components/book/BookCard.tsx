@@ -4,6 +4,7 @@ import { BookCover } from "@/components/book/BookCover";
 import { RatingDisplay } from "@/components/book/RatingDisplay";
 import { LanguageBadge } from "@/components/edition/LanguageBadge";
 import { MatchReason } from "@/components/search/MatchReason";
+import { ResultLink } from "@/components/search/ResultLink";
 import { authorsOf, editionsOf, getPublisher } from "@/data/catalog";
 import { cn } from "@/lib/cn";
 import { editionSummary } from "@/lib/format";
@@ -24,9 +25,12 @@ export function BookCard({
   result,
   priority = false,
   headingLevel = 3,
+  position,
 }: {
   result: SearchResult;
   priority?: boolean;
+  /** Posisi 1-based di daftar hasil, dicatat saat kartu diklik (bagian 30). */
+  position?: number;
   /**
    * Tingkat heading judul buku. Wajib menyesuaikan konteks halaman, karena
    * melompati tingkat heading melanggar WCAG 1.3.1 (RnD 21.1). Di halaman
@@ -75,13 +79,16 @@ export function BookCard({
       <div className="flex min-w-0 flex-1 flex-col gap-1">
         <div className="flex flex-wrap items-start gap-x-2 gap-y-1">
           <Heading className="min-w-0 text-h3 text-ink-900">
-            <Link
+            <ResultLink
               href={`/book/${work.slug}?edition=${edition.id}`}
-              className="font-title hover:underline hover:underline-offset-2"
+              workId={work.id}
+              position={position ?? 0}
+              matchedOnField={matchedOn.field}
               lang={edition.language}
+              className="font-title hover:underline hover:underline-offset-2"
             >
               {edition.title}
-            </Link>
+            </ResultLink>
           </Heading>
           <span className="flex shrink-0 gap-1 pt-0.5">
             {languages.map((lang) => (
@@ -104,15 +111,18 @@ export function BookCard({
         </p>
 
         <div className="mt-2 flex flex-wrap gap-2">
-          <Link
+          <ResultLink
             href={`/book/${work.slug}?edition=${edition.id}`}
+            workId={work.id}
+            position={position ?? 0}
+            matchedOnField={matchedOn.field}
             className={cn(
               "inline-flex tap-target items-center rounded-md bg-accent-600 px-4 text-body font-medium text-accent-on",
               "transition-colors duration-[var(--dur-micro)] hover:bg-accent-700",
             )}
           >
             Lihat buku
-          </Link>
+          </ResultLink>
 
           <Link
             href={`/book/${work.slug}/editions`}

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import { BookCard } from "@/components/book/BookCard";
 import { FilterBar } from "@/components/search/FilterBar";
+import { SearchTelemetry } from "@/components/search/SearchTelemetry";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { editionsOf, getPublisher, works } from "@/data/catalog";
 import { formatCount } from "@/lib/format";
@@ -75,6 +76,19 @@ export default async function SearchPage(props: PageProps<"/search">) {
         </p>
       </header>
 
+      <SearchTelemetry
+        query={query}
+        resultCount={response.results.length}
+        totalBeforeFilters={response.totalBeforeFilters}
+        isLowConfidence={response.isLowConfidence}
+        emptyStateCode={emptyStateCode(response, filters)}
+        filtersActive={
+          [filters.language, filters.format, filters.publisher].filter(
+            (value) => value && value !== "all",
+          ).length
+        }
+      />
+
       <FilterBar
         languages={languageOptions}
         formats={formatOptions}
@@ -95,7 +109,12 @@ export default async function SearchPage(props: PageProps<"/search">) {
           <ol className="flex flex-col gap-4">
             {response.results.map((result, index) => (
               <li key={result.work.id}>
-                <BookCard result={result} priority={index < 4} headingLevel={2} />
+                <BookCard
+                  result={result}
+                  priority={index < 4}
+                  headingLevel={2}
+                  position={index + 1}
+                />
               </li>
             ))}
           </ol>
@@ -105,6 +124,18 @@ export default async function SearchPage(props: PageProps<"/search">) {
       )}
     </div>
   );
+}
+
+/** Kode empty state yang sedang berlaku, dipakai telemetry dan NoResults. */
+function emptyStateCode(
+  response: ReturnType<typeof search>,
+  filters: SearchFilters,
+): string | null {
+  if (response.results.length > 0) return null;
+  if (response.emptyBecauseOfFilters) {
+    return filters.language && filters.language !== "all" ? "E-05" : "E-04";
+  }
+  return suggestions(response.query).length > 0 ? "E-03" : "E-04";
 }
 
 function NoResults({
