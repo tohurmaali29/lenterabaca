@@ -30,9 +30,20 @@ const eslintConfig = defineConfig([
     },
   },
 
-  // Satu-satunya file yang boleh menyentuh Web Storage.
+  // Satu-satunya berkas produksi yang boleh menyentuh Web Storage.
   {
     files: ["src/lib/storage.ts"],
+    rules: {
+      "no-restricted-globals": "off",
+      "no-restricted-properties": "off",
+    },
+  },
+
+  // Test justru HARUS bisa menyentuh storage langsung: menyiapkan data rusak,
+  // memalsukan kuota penuh, dan memeriksa apa yang benar-benar tersimpan
+  // tidak mungkin dilakukan lewat modul yang sedang diuji itu sendiri.
+  {
+    files: ["tests/**/*.ts"],
     rules: {
       "no-restricted-globals": "off",
       "no-restricted-properties": "off",
