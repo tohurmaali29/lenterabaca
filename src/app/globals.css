@@ -1,26 +1,337 @@
 @import "tailwindcss";
 
+/* ==========================================================================
+   LenteraBaca - Design Tokens
+   Sumber: RnD v2.1 bagian 18. Nilai di sini adalah satu sumber kebenaran.
+   Jangan pernah menulis warna, radius, atau shadow literal di komponen.
+   ========================================================================== */
+
+/* -------------------------------------------------------------------------
+   18.1 Warna - Light
+   ------------------------------------------------------------------------- */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: light;
+
+  /* Permukaan */
+  --surface: #ffffff;
+  --surface-alt: #faf9f6;
+  --surface-sunken: #f2f0eb;
+
+  /* Garis */
+  --line: #e5e3dd;
+  --line-strong: #cfccc4;
+
+  /* Teks */
+  --ink-900: #1a1a18;
+  --ink-700: #3f3e3a;
+  --ink-500: #615f59;
+  --ink-400: #7c7a73;
+
+  /* Aksen */
+  --accent-700: #1f4a3d;
+  --accent-600: #276554;
+  --accent-100: #ddeae4;
+  --accent-on: #ffffff;
+
+  /* Badge bahasa */
+  --lang-id-bg: #e4edfb;
+  --lang-id-fg: #17457f;
+  --lang-other-bg: #f0eee8;
+  --lang-other-fg: #4a4842;
+
+  /* Rating */
+  --rating-fill: #d99512;
+  --rating-text: #57451f;
+
+  /* Semantik */
+  --success-fg: #155e3f;
+  --warning-fg: #7a4e00;
+  --danger-fg: #a3211b;
+
+  /* Fokus */
+  --focus-ring: #276554;
+
+  /* 18.4 Elevasi */
+  --elev-1: 0 1px 2px rgb(0 0 0 / 0.06);
+  --elev-2: 0 4px 12px rgb(0 0 0 / 0.08);
+  --elev-3: 0 12px 32px rgb(0 0 0 / 0.16);
+
+  /* 18.4 Z-index - tidak ada namespace Tailwind, dipakai lewat var() */
+  --z-header: 10;
+  --z-dropdown: 20;
+  --z-overlay: 30;
+  --z-drawer: 31;
+  --z-toast: 40;
+
+  /* 18.4 Ukuran cover, rasio tetap 2:3 */
+  --cover-xs: 40px;
+  --cover-sm: 64px;
+  --cover-md: 96px;
+  --cover-lg: 160px;
+  --cover-xl: 220px;
+
+  /* 22 Motion */
+  --ease-out: cubic-bezier(0.2, 0.8, 0.25, 1);
+  --dur-micro: 120ms;
+  --dur-press: 80ms;
+  --dur-dropdown: 160ms;
+  --dur-panel: 180ms;
+  --dur-drawer: 240ms;
+  --dur-sheet: 260ms;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
+/* -------------------------------------------------------------------------
+   18.2 Warna - Dark
+   Dua blok, sesuai pola di RnD bagian 18.2:
+   1. mengikuti preferensi sistem, kecuali user memaksa terang
+   2. dipaksa gelap lewat data-theme (dipakai ThemeToggle di Phase 6)
+   ------------------------------------------------------------------------- */
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+
+    --surface: #14150f;
+    --surface-alt: #1c1d16;
+    --surface-sunken: #24251d;
+
+    --line: #32332a;
+    --line-strong: #494a3f;
+
+    --ink-900: #f4f3ec;
+    --ink-700: #dad8ce;
+    --ink-500: #a9a79d;
+    --ink-400: #8d8b81;
+
+    --accent-700: #8ed4bb;
+    --accent-600: #6fbfa3;
+    --accent-100: #1f3a32;
+    --accent-on: #10231c;
+
+    --lang-id-bg: #1b2f4c;
+    --lang-id-fg: #a8ccf6;
+    --lang-other-bg: #2a2b22;
+    --lang-other-fg: #cfcdc3;
+
+    --rating-fill: #e9b145;
+    --rating-text: #e4d9bd;
+
+    --success-fg: #7fd3aa;
+    --warning-fg: #e0b464;
+    --danger-fg: #f0948d;
+
+    --focus-ring: #8ed4bb;
+
+    --elev-1: 0 1px 2px rgb(0 0 0 / 0.4);
+    --elev-2: 0 4px 12px rgb(0 0 0 / 0.45);
+    --elev-3: 0 12px 32px rgb(0 0 0 / 0.55);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --surface: #14150f;
+  --surface-alt: #1c1d16;
+  --surface-sunken: #24251d;
+
+  --line: #32332a;
+  --line-strong: #494a3f;
+
+  --ink-900: #f4f3ec;
+  --ink-700: #dad8ce;
+  --ink-500: #a9a79d;
+  --ink-400: #8d8b81;
+
+  --accent-700: #8ed4bb;
+  --accent-600: #6fbfa3;
+  --accent-100: #1f3a32;
+  --accent-on: #10231c;
+
+  --lang-id-bg: #1b2f4c;
+  --lang-id-fg: #a8ccf6;
+  --lang-other-bg: #2a2b22;
+  --lang-other-fg: #cfcdc3;
+
+  --rating-fill: #e9b145;
+  --rating-text: #e4d9bd;
+
+  --success-fg: #7fd3aa;
+  --warning-fg: #e0b464;
+  --danger-fg: #f0948d;
+
+  --focus-ring: #8ed4bb;
+
+  --elev-1: 0 1px 2px rgb(0 0 0 / 0.4);
+  --elev-2: 0 4px 12px rgb(0 0 0 / 0.45);
+  --elev-3: 0 12px 32px rgb(0 0 0 / 0.55);
+}
+
+/* -------------------------------------------------------------------------
+   Pemetaan token ke utility Tailwind.
+   "inline" membuat utility merujuk var() alih-alih menyalin nilainya,
+   sehingga tema bisa berganti tanpa membangun ulang CSS.
+   ------------------------------------------------------------------------- */
+@theme inline {
+  /* Warna */
+  --color-surface: var(--surface);
+  --color-surface-alt: var(--surface-alt);
+  --color-surface-sunken: var(--surface-sunken);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-ink-900: var(--ink-900);
+  --color-ink-700: var(--ink-700);
+  --color-ink-500: var(--ink-500);
+  --color-ink-400: var(--ink-400);
+  --color-accent-700: var(--accent-700);
+  --color-accent-600: var(--accent-600);
+  --color-accent-100: var(--accent-100);
+  --color-accent-on: var(--accent-on);
+  --color-lang-id-bg: var(--lang-id-bg);
+  --color-lang-id-fg: var(--lang-id-fg);
+  --color-lang-other-bg: var(--lang-other-bg);
+  --color-lang-other-fg: var(--lang-other-fg);
+  --color-rating-fill: var(--rating-fill);
+  --color-rating-text: var(--rating-text);
+  --color-success-fg: var(--success-fg);
+  --color-warning-fg: var(--warning-fg);
+  --color-danger-fg: var(--danger-fg);
+  --color-focus-ring: var(--focus-ring);
+
+  /* 18.3 Tipografi. Serif HANYA untuk judul karya dan judul edisi. */
+  --font-ui: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-title: var(--font-source-serif), Georgia, serif;
+
+  --text-display: 2rem; /* 32px */
+  --text-display--line-height: 2.375rem; /* 38px */
+  --text-display--letter-spacing: -0.02em;
+  --text-display--font-weight: 700;
+
+  --text-h1: 1.5rem; /* 24px */
+  --text-h1--line-height: 1.875rem; /* 30px */
+  --text-h1--letter-spacing: -0.01em;
+  --text-h1--font-weight: 700;
+
+  --text-h2: 1.25rem; /* 20px */
+  --text-h2--line-height: 1.625rem; /* 26px */
+  --text-h2--font-weight: 600;
+
+  --text-h3: 1.0625rem; /* 17px */
+  --text-h3--line-height: 1.5rem; /* 24px */
+  --text-h3--font-weight: 600;
+
+  --text-body-lg: 1rem; /* 16px */
+  --text-body-lg--line-height: 1.625rem; /* 26px */
+
+  --text-body: 0.9375rem; /* 15px */
+  --text-body--line-height: 1.5rem; /* 24px */
+
+  --text-sm: 0.84375rem; /* 13,5px */
+  --text-sm--line-height: 1.25rem; /* 20px */
+
+  --text-xs: 0.75rem; /* 12px */
+  --text-xs--line-height: 1rem; /* 16px */
+  --text-xs--font-weight: 500;
+
+  --text-overline: 0.6875rem; /* 11px */
+  --text-overline--line-height: 1rem; /* 16px */
+  --text-overline--letter-spacing: 0.08em;
+  --text-overline--font-weight: 600;
+
+  /* 18.4 Radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+
+  /* 18.4 Elevasi */
+  --shadow-1: var(--elev-1);
+  --shadow-2: var(--elev-2);
+  --shadow-3: var(--elev-3);
+
+  /* 18.4 Container. Breakpoint sm/md/lg/xl sudah cocok dengan default. */
+  --container-page: 1120px;
+}
+
+/* -------------------------------------------------------------------------
+   Base layer
+   ------------------------------------------------------------------------- */
+@layer base {
+  body {
+    background: var(--surface);
+    color: var(--ink-700);
+    font-family: var(--font-ui);
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* 21.1 Fokus selalu terlihat. Tidak pernah outline:none tanpa pengganti. */
+  :focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+  }
+
+  /* Judul karya dan judul edisi memakai serif, sisanya tidak. */
+  .font-title {
+    font-family: var(--font-title);
+  }
+
+  /* 22 Reduced motion: semua transform dan animasi dimatikan. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: var(--dur-micro) !important;
+      transition-property: opacity, color, background-color, border-color !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* -------------------------------------------------------------------------
+   Utility khusus produk
+   ------------------------------------------------------------------------- */
+
+/* 18.4 Cover selalu rasio 2:3. Lebar dari token, tinggi dihitung. */
+@utility cover-xs {
+  width: var(--cover-xs);
+  height: calc(var(--cover-xs) * 1.5);
+}
+@utility cover-sm {
+  width: var(--cover-sm);
+  height: calc(var(--cover-sm) * 1.5);
+}
+@utility cover-md {
+  width: var(--cover-md);
+  height: calc(var(--cover-md) * 1.5);
+}
+@utility cover-lg {
+  width: var(--cover-lg);
+  height: calc(var(--cover-lg) * 1.5);
+}
+@utility cover-xl {
+  width: var(--cover-xl);
+  height: calc(var(--cover-xl) * 1.5);
+}
+
+/* 21.1 Target sentuh minimal 44x44. */
+@utility tap-target {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+/* Lebar konten halaman, termasuk gutter per breakpoint (18.4). */
+@utility container-page {
+  margin-inline: auto;
+  width: 100%;
+  max-width: var(--container-page);
+  padding-inline: --spacing(4);
+  @variant sm {
+    padding-inline: --spacing(6);
+  }
+  @variant lg {
+    padding-inline: --spacing(8);
+  }
 }
