@@ -12,6 +12,9 @@ const ROUTES = [
   "/search?q=orwell&lang=id",
   "/search?q=pachinko&lang=id",
   "/search?q=zzzqqqxxx",
+  "/book/laskar-pelangi",
+  "/book/pachinko",
+  "/book/1984/editions",
   "/my-books",
   "/about",
 ];
@@ -31,3 +34,21 @@ for (const route of ROUTES) {
     expect(blocking, blocking.map((v) => `${v.id}: ${v.help}`).join("\n")).toEqual([]);
   });
 }
+
+test("axe bersih saat drawer edisi terbuka", async ({ page }) => {
+  await page.goto("/book/laskar-pelangi");
+  await page.getByRole("button", { name: /Ganti edisi/ }).click();
+  await page.getByRole("dialog").waitFor();
+
+  const results = await new AxeBuilder({ page })
+    .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"])
+    .analyze();
+
+  const blocking = results.violations.filter(
+    (violation) => violation.impact === "serious" || violation.impact === "critical",
+  );
+
+  expect(blocking, blocking.map((v) => `${v.id}: ${v.help}`).join(String.fromCharCode(10))).toEqual(
+    [],
+  );
+});

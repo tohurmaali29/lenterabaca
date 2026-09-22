@@ -74,29 +74,37 @@ const UI_TOKENS = ["--line-strong", "--focus-ring", "--rating-fill"];
 
 function runSuite(themeName: string, theme: Record<string, string>) {
   describe(`tema ${themeName}`, () => {
-    const surface = theme["--surface"];
-    const surfaceAlt = theme["--surface-alt"];
+    /**
+     * Semua permukaan tempat teks bisa berdiri, bukan hanya dua yang utama.
+     * Kelalaian ini sempat lolos: ink-400 aman di surface tetapi hanya 3,89
+     * di atas accent-100, yang dipakai sebagai latar baris edisi terpilih
+     * di dalam drawer. Ketahuan oleh axe, bukan oleh test ini.
+     */
+    const surfaces: Array<[string, string]> = [
+      ["surface", theme["--surface"]],
+      ["surface-alt", theme["--surface-alt"]],
+      ["surface-sunken", theme["--surface-sunken"]],
+      ["accent-100", theme["--accent-100"]],
+    ];
 
-    it.each(TEXT_TOKENS)("%s minimal 4,5:1 terhadap kedua permukaan", (token) => {
+    it.each(TEXT_TOKENS)("%s minimal 4,5:1 di setiap permukaan", (token) => {
       const value = theme[token];
       expect(value, `${token} tidak ada di tema ${themeName}`).toBeDefined();
 
-      const onSurface = contrast(value, surface);
-      const onAlt = contrast(value, surfaceAlt);
-
-      expect(onSurface, `${token} di surface: ${onSurface.toFixed(2)}`).toBeGreaterThanOrEqual(4.5);
-      expect(onAlt, `${token} di surface-alt: ${onAlt.toFixed(2)}`).toBeGreaterThanOrEqual(4.5);
+      for (const [name, background] of surfaces) {
+        const ratio = contrast(value, background);
+        expect(ratio, `${token} di ${name}: ${ratio.toFixed(2)}`).toBeGreaterThanOrEqual(4.5);
+      }
     });
 
-    it.each(UI_TOKENS)("%s minimal 3:1 terhadap kedua permukaan", (token) => {
+    it.each(UI_TOKENS)("%s minimal 3:1 di setiap permukaan", (token) => {
       const value = theme[token];
       expect(value, `${token} tidak ada di tema ${themeName}`).toBeDefined();
 
-      const onSurface = contrast(value, surface);
-      const onAlt = contrast(value, surfaceAlt);
-
-      expect(onSurface, `${token} di surface: ${onSurface.toFixed(2)}`).toBeGreaterThanOrEqual(3);
-      expect(onAlt, `${token} di surface-alt: ${onAlt.toFixed(2)}`).toBeGreaterThanOrEqual(3);
+      for (const [name, background] of surfaces) {
+        const ratio = contrast(value, background);
+        expect(ratio, `${token} di ${name}: ${ratio.toFixed(2)}`).toBeGreaterThanOrEqual(3);
+      }
     });
 
     it("teks tombol primer terbaca di atas latar aksen", () => {
