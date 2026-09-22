@@ -44,3 +44,6 @@ next-env.d.ts
 /playwright-report/
 /test-results/
 /coverage/
+
+# walkthrough recording
+/walkthrough-output/

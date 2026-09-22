@@ -14,7 +14,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
-    "verify": "npm run format:check && npm run lint && npm run typecheck && npm run test && npm run build"
+    "verify": "npm run format:check && npm run lint && npm run typecheck && npm run test && npm run build",
+    "walkthrough": "playwright test --config=playwright.walkthrough.config.ts"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.23",
