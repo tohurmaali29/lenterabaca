@@ -5,6 +5,8 @@ import { notFound } from "next/navigation";
 import { WorkHero } from "@/components/book/WorkHero";
 import { EditionAnnouncer } from "@/components/edition/EditionAnnouncer";
 import { SelectedEditionPanel } from "@/components/edition/SelectedEditionPanel";
+import { ReviewSection } from "@/components/review/ReviewSection";
+import { ShelfButton } from "@/components/shelf/ShelfButton";
 import { Disclosure } from "@/components/ui/Disclosure";
 import { EmptyState } from "@/components/ui/EmptyState";
 import {
@@ -94,6 +96,14 @@ export default async function BookDetailPage(props: PageProps<"/book/[slug]">) {
 
       <WorkHero work={work} edition={edition} />
 
+      <div className="flex flex-wrap items-start gap-3">
+        <ShelfButton
+          workId={work.id}
+          edition={edition}
+          publisherName={publisher?.name ?? "penerbit tidak diketahui"}
+        />
+      </div>
+
       {!work.hasIndonesianEdition && (
         <EmptyState
           code="E-06"
@@ -149,10 +159,18 @@ export default async function BookDetailPage(props: PageProps<"/book/[slug]">) {
         <h2 id="judul-review" className="text-h2 text-ink-900">
           Review
         </h2>
-        <p className="mt-2 text-body text-ink-500">
-          Menulis review dan menyimpan ke rak dibangun di Phase 5, bersama lapisan penyimpanan
-          lokal.
-        </p>
+        <div className="mt-3">
+          <ReviewSection
+            workId={work.id}
+            edition={edition}
+            publisherName={publisher?.name ?? "penerbit tidak diketahui"}
+            editionLanguages={editions.map((item) => ({
+              id: item.id as string,
+              language: item.language,
+              label: `${getPublisher(item.publisherId)?.name ?? ""} ${item.publishedYear}`,
+            }))}
+          />
+        </div>
       </section>
     </article>
   );

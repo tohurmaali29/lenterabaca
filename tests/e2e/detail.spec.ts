@@ -30,7 +30,6 @@ test("rating karya dan rating edisi disebut cakupannya masing-masing (R-05, F7)"
 test("edisi awal adalah edisi Bahasa Indonesia terbaru (R-06)", async ({ page }) => {
   await page.goto(LASKAR);
 
-  const panel = page.getByRole("region", { name: /Edisi terpilih|Laskar Pelangi/ }).first();
   await expect(page.getByText("2018")).toBeVisible();
 });
 

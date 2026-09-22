@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { HeaderSearchSlot } from "@/components/shell/HeaderSearchSlot";
 import { SkipLink } from "@/components/shell/SkipLink";
+import { StorageBanner } from "@/components/shell/StorageBanner";
 
 /**
  * Shell tunggal untuk seluruh route.
@@ -15,6 +16,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   return (
     <>
       <SkipLink />
+      <StorageBanner />
 
       <header
         className="sticky top-0 border-b border-line bg-surface/95 backdrop-blur"
