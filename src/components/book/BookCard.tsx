@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { BookCover } from "@/components/book/BookCover";
 import { RatingDisplay } from "@/components/book/RatingDisplay";
 import { LanguageBadge } from "@/components/edition/LanguageBadge";
 import { MatchReason } from "@/components/search/MatchReason";
@@ -22,11 +23,20 @@ import type { SearchResult } from "@/lib/search/query";
 export function BookCard({
   result,
   priority = false,
+  headingLevel = 3,
 }: {
   result: SearchResult;
   priority?: boolean;
+  /**
+   * Tingkat heading judul buku. Wajib menyesuaikan konteks halaman, karena
+   * melompati tingkat heading melanggar WCAG 1.3.1 (RnD 21.1). Di halaman
+   * hasil, kartu berada langsung di bawah h1 sehingga memakai h2. Di halaman
+   * discovery, kartu berada di dalam section ber-h2 sehingga memakai h3.
+   */
+  headingLevel?: 2 | 3;
 }) {
   const { work, edition, matchedOn } = result;
+  const Heading = `h${headingLevel}` as "h2" | "h3";
 
   const authors = authorsOf(work);
   const publisher = getPublisher(edition.publisherId);
@@ -51,21 +61,20 @@ export function BookCard({
         aria-hidden="true"
         className="shrink-0"
       >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
+        <BookCover
           src={edition.cover.url}
           alt=""
-          width={edition.cover.width}
-          height={edition.cover.height}
-          loading={priority ? "eager" : "lazy"}
-          fetchPriority={priority ? "high" : "auto"}
-          className="cover-sm rounded-sm bg-surface-sunken object-cover sm:cover-md"
+          title={edition.title}
+          publisherName={publisher?.name ?? ""}
+          size="sm"
+          priority={priority}
+          className="sm:cover-md"
         />
       </Link>
 
       <div className="flex min-w-0 flex-1 flex-col gap-1">
         <div className="flex flex-wrap items-start gap-x-2 gap-y-1">
-          <h3 className="min-w-0 text-h3 text-ink-900">
+          <Heading className="min-w-0 text-h3 text-ink-900">
             <Link
               href={`/book/${work.slug}?edition=${edition.id}`}
               className="font-title hover:underline hover:underline-offset-2"
@@ -73,7 +82,7 @@ export function BookCard({
             >
               {edition.title}
             </Link>
-          </h3>
+          </Heading>
           <span className="flex shrink-0 gap-1 pt-0.5">
             {languages.map((lang) => (
               <LanguageBadge key={lang} lang={lang} />

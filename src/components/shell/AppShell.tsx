@@ -4,6 +4,7 @@ import Link from "next/link";
 import { HeaderSearchSlot } from "@/components/shell/HeaderSearchSlot";
 import { SkipLink } from "@/components/shell/SkipLink";
 import { StorageBanner } from "@/components/shell/StorageBanner";
+import { ThemeToggle } from "@/components/shell/ThemeToggle";
 
 /**
  * Shell tunggal untuk seluruh route.
@@ -34,7 +35,11 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 
           <HeaderSearchSlot />
 
-          <nav aria-label="Navigasi utama" className="ml-auto shrink-0">
+          <div className="ml-auto hidden shrink-0 sm:block">
+            <ThemeToggle />
+          </div>
+
+          <nav aria-label="Navigasi utama" className="shrink-0">
             <Link
               href="/my-books"
               className="flex tap-target items-center gap-2 rounded-md px-3 text-body text-ink-700 hover:bg-surface-alt hover:text-ink-900"

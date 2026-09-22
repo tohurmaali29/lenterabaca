@@ -95,7 +95,7 @@ export default async function SearchPage(props: PageProps<"/search">) {
           <ol className="flex flex-col gap-4">
             {response.results.map((result, index) => (
               <li key={result.work.id}>
-                <BookCard result={result} priority={index < 4} />
+                <BookCard result={result} priority={index < 4} headingLevel={2} />
               </li>
             ))}
           </ol>
@@ -158,7 +158,7 @@ function NoResults({
         <ol className="flex flex-col gap-4">
           {nearby.map((result) => (
             <li key={result.work.id}>
-              <BookCard result={result} />
+              <BookCard result={result} headingLevel={2} />
             </li>
           ))}
         </ol>

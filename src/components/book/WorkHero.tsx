@@ -1,5 +1,6 @@
+import { BookCover } from "@/components/book/BookCover";
 import { RatingDisplay } from "@/components/book/RatingDisplay";
-import { authorsOf, getSeries } from "@/data/catalog";
+import { authorsOf, getPublisher, getSeries } from "@/data/catalog";
 import type { BookWork, Edition } from "@/lib/types";
 
 /**
@@ -15,14 +16,14 @@ export function WorkHero({ work, edition }: { work: BookWork; edition: Edition }
 
   return (
     <section aria-labelledby="judul-karya" className="flex flex-col gap-5 sm:flex-row sm:gap-6">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
+      <BookCover
         src={edition.cover.url}
         alt={edition.cover.alt}
-        width={edition.cover.width}
-        height={edition.cover.height}
-        fetchPriority="high"
-        className="cover-md shrink-0 self-start rounded-md bg-surface-sunken shadow-1 sm:cover-lg"
+        title={edition.title}
+        publisherName={getPublisher(edition.publisherId)?.name ?? ""}
+        size="md"
+        priority
+        className="self-start shadow-1 sm:cover-lg"
       />
 
       <div className="flex min-w-0 flex-col gap-2">
