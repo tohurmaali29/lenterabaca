@@ -70,6 +70,41 @@ Beberapa keputusan dokumen dipasang sebagai guard supaya tidak bisa bocor diam-d
 - **Web Storage hanya lewat satu pintu.** ESLint menolak `localStorage` dan `sessionStorage` di mana pun kecuali `src/lib/storage.ts` (RnD 27.2). Ini mencegah hydration mismatch dan melewatkan validasi skema.
 - **Satu navbar dan satu search bar per dokumen.** Dijaga `tests/e2e/shell.spec.ts` di semua route. Ini regression guard langsung untuk temuan F2, di mana Goodreads menampilkan navbar dan search bar ganda setelah pencarian dijalankan.
 - **Nol pelanggaran axe serius dan kritis.** Dijaga `tests/a11y/smoke.spec.ts`. Cakupannya bertambah tiap fase.
+- **Integritas katalog gagal saat build, bukan di layar user.** `src/data/catalog.ts` melempar error ketika modul dimuat kalau ada edisi yang menunjuk karya, penerbit, atau penerjemah yang tidak ada, atau kalau `defaultEditionId` bukan milik karyanya.
+- **Tidak ada cover eksternal.** Semua cover adalah SVG yang digenerate dari judul, penerbit, dan tahun, diprarender saat build. Dijaga `tests/unit/fixtures.test.ts`.
+
+## Katalog
+
+Fixtures kurasi, dirakit dan diverifikasi saat modul dimuat:
+
+| Angka                                   | Nilai            |
+| --------------------------------------- | ---------------- |
+| Karya                                   | 18               |
+| Edisi                                   | 59               |
+| Edisi Bahasa Indonesia                  | 30               |
+| Karya yang punya edisi Bahasa Indonesia | 14 dari 18       |
+| Karya berbahasa asal Indonesia          | 4                |
+| Bahasa edisi                            | id, en, ja, fr   |
+| Penerbit                                | 18 (8 Indonesia) |
+| Penulis                                 | 16               |
+
+Empat karya **sengaja** tidak punya edisi Bahasa Indonesia, supaya empty state
+"belum ada edisi Bahasa Indonesia" bisa diuji dengan data nyata, bukan dengan
+data yang dipaksa kosong.
+
+Dua belas edge case dari RnD bagian 25.1 semuanya hadir di data dan
+diverifikasi satu per satu oleh `tests/unit/fixtures.test.ts`, termasuk: ISBN
+sama dengan cetakan berbeda, judul terjemahan tanpa satu kata pun yang sama
+dengan judul asli, audiobook tanpa jumlah halaman, edisi tanpa rating, dan
+edisi yang sudah tidak dicetak.
+
+### Rating tidak bisa saling bertentangan
+
+Histogram bintang adalah satu-satunya angka yang ditulis tangan. `average` dan
+`count` edisi dihitung dari histogram, dan rating karya dihitung sebagai
+penjumlahan histogram seluruh edisinya. Jadi tidak mungkin ada edisi dengan
+rata-rata 4,2 dari 3 rating, dan tidak mungkin rating karya berbeda dari
+jumlah rating edisi-edisinya.
 
 ## Struktur
 
@@ -93,8 +128,8 @@ Rinciannya di RnD bagian 28.
 | Fase                               | Status                                        |
 | ---------------------------------- | --------------------------------------------- |
 | Phase 1 - Setup                    | Selesai                                       |
-| Phase 2 - Fixtures katalog         | Berikutnya                                    |
-| Phase 3 - Pencarian dan hasil      | Belum                                         |
+| Phase 2 - Fixtures katalog         | Selesai                                       |
+| Phase 3 - Pencarian dan hasil      | Berikutnya                                    |
 | Phase 4 - Detail dan pemilih edisi | Belum                                         |
 | Phase 5 - Persistensi              | Belum                                         |
 | Phase 6 - Polish, a11y, dark mode  | Belum                                         |
