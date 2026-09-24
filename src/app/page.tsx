@@ -12,45 +12,58 @@ import { formatCount } from "@/lib/format";
  * Halaman discovery. RnD F1.
  *
  * Search bar berada di viewport pertama dan menjadi elemen paling menonjol.
- * Ini jawaban langsung untuk temuan F1: di Goodreads, guest harus scroll
- * untuk menemukan kolom pencarian, dan kolom itu kecil serta bercampur
- * dengan daftar kategori.
  */
 export default function DiscoveryPage() {
   const popular = popularWorks(4);
 
   return (
     <div className="flex flex-col gap-10">
-      <section className="mx-auto w-full max-w-2xl pt-6 sm:pt-10">
-        <h1 className="text-display text-ink-900">Mau baca apa hari ini?</h1>
-        <p className="mt-3 text-body-lg text-ink-500">
-          Cari buku, lalu lihat langsung apakah ada edisi Bahasa Indonesianya, tanpa perlu membuka
-          halaman edisi satu per satu.
-        </p>
+      <div className="relative left-1/2 -mt-6 w-screen -translate-x-1/2 overflow-hidden px-4 py-14 shadow-1 sm:-mt-8 sm:px-6 sm:py-16 lg:-mt-10 lg:px-8 lg:py-20">
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 -z-20 bg-cover bg-center"
+          style={{ backgroundImage: "url('/lenterabaca-banner.jpg')" }}
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 -z-10 bg-black/62"
+        />
 
-        <div className="mt-6">
-          <SearchBar size="hero" />
-        </div>
+        <section className="mx-auto w-full max-w-2xl">
+          <p className="mb-3 text-overline text-white/70 uppercase">LenteraBaca Discovery</p>
+          <h1 className="text-display text-white drop-shadow-sm">Mau baca apa hari ini?</h1>
+          <p className="mt-3 text-body-lg text-white/85">
+            Cari buku, lalu lihat langsung apakah ada edisi Bahasa Indonesianya, tanpa perlu
+            membuka halaman edisi satu per satu.
+          </p>
 
-        <RecentSearches />
+          <div className="mt-6">
+            <SearchBar size="hero" tone="onImage" />
+          </div>
 
-        <p className="mt-4 text-sm text-ink-400">
-          {formatCount(catalogStats.workCount)} karya, {formatCount(catalogStats.editionCount)}{" "}
-          edisi, {formatCount(catalogStats.worksWithIndonesianEdition)} di antaranya punya edisi
-          Bahasa Indonesia.
-        </p>
-      </section>
+          <RecentSearches tone="onImage" />
 
-      <section aria-labelledby="judul-contoh">
+          <p className="mt-4 text-sm text-white/72">
+            {formatCount(catalogStats.workCount)} karya, {formatCount(catalogStats.editionCount)}{" "}
+            edisi, {formatCount(catalogStats.worksWithIndonesianEdition)} di antaranya punya edisi
+            Bahasa Indonesia.
+          </p>
+        </section>
+      </div>
+
+      <section
+        aria-labelledby="judul-contoh"
+        className="rounded-xl border border-line bg-surface-alt p-5 shadow-1 sm:p-6"
+      >
         <h2 id="judul-contoh" className="text-h2 text-ink-900">
           Coba mulai dari sini
         </h2>
-        <p className="mt-1 text-body text-ink-500">
+        <p className="mt-1 max-w-3xl text-body text-ink-500">
           Ketiganya menunjukkan kasus yang berbeda: judul terjemahan yang jauh berbeda, banyak edisi
           Indonesia, dan karya yang belum punya edisi Indonesia.
         </p>
 
-        <ul className="mt-4 flex flex-wrap gap-2">
+        <ul className="mt-4 flex flex-wrap gap-2 ">
           {[
             { label: "binatangisme", note: "judul terjemahan lama" },
             { label: "1984", note: "empat edisi Indonesia" },
@@ -60,7 +73,7 @@ export default function DiscoveryPage() {
             <li key={example.label}>
               <Link
                 href={`/search?q=${encodeURIComponent(example.label)}`}
-                className="rounded-pill inline-flex tap-target items-center gap-2 border border-line-strong px-4 text-sm text-ink-700 hover:bg-surface-alt"
+                className=" rounded-pill inline-flex tap-target items-center gap-2 border border-line bg-surface px-4 text-sm text-ink-700 shadow-1 transition-[background-color,border-color,box-shadow,transform] duration-[var(--dur-micro)] hover:-translate-y-0.5 hover:border-accent-600 hover:bg-surface hover:text-ink-900 hover:shadow-2"
               >
                 <span className="font-medium text-ink-900">{example.label}</span>
                 <span className="text-ink-500">{example.note}</span>
@@ -69,7 +82,6 @@ export default function DiscoveryPage() {
           ))}
         </ul>
       </section>
-
       <section aria-labelledby="judul-populer">
         <div className="flex flex-wrap items-baseline justify-between gap-2">
           <h2 id="judul-populer" className="text-h2 text-ink-900">

@@ -81,19 +81,17 @@ export default function AboutPage() {
                 Heuristik: {finding.heuristic} &middot; dikunci oleh {finding.requirement}
               </p>
 
-              {finding.screenshot && (
-                <Disclosure labelOpen="Lihat tangkapan layar" labelClose="Tutup tangkapan layar">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={`/audit/${finding.screenshot}`}
-                    alt={`Tangkapan layar Goodreads untuk temuan ${finding.id}: ${finding.title}`}
-                    width={1280}
-                    height={610}
-                    loading="lazy"
-                    className="mt-2 w-full rounded-md border border-line"
-                  />
-                </Disclosure>
-              )}
+              <p>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={`/audit/${finding.screenshot}`}
+                  alt={`Tangkapan layar Goodreads untuk temuan ${finding.id}: ${finding.title}`}
+                  width={1280}
+                  height={610}
+                  loading="lazy"
+                  className="mt-2 w-full rounded-md border border-line"
+                />
+              </p>
             </li>
           ))}
         </ol>
@@ -135,39 +133,13 @@ export default function AboutPage() {
             asli. Keputusan ini diambil untuk menghindari masalah hak cipta dan bersifat sementara.
           </li>
           <li>
-            Data tersimpan di browser ini saja. Tidak ada server, tidak ada akun, dan tidak ada yang
+            Data bersifat statis. Tidak ada server, tidak ada akun, dan tidak ada yang
             dikirim ke mana pun.
           </li>
           <li>Temuan heuristik berasal dari satu orang evaluator.</li>
         </ul>
       </section>
 
-      <section aria-labelledby="judul-alat" className="flex flex-col gap-3">
-        <h2 id="judul-alat" className="text-h2 text-ink-900">
-          Alat demo
-        </h2>
-        <p className="text-body text-ink-500">
-          Log aktivitas di bawah hanya tersimpan di browser ini dan tidak dikirim ke mana pun.
-          Gunanya menjadi data mentah saat usability test.
-        </p>
-        <DemoTools />
-      </section>
-
-      <section aria-labelledby="judul-lanjut" className="flex flex-col gap-3">
-        <h2 id="judul-lanjut" className="text-h2 text-ink-900">
-          Berikutnya
-        </h2>
-        <p className="text-body-lg text-ink-700">
-          Usability test dengan lima peserta, dijalankan langsung di demo ini, membandingkan
-          Goodreads asli dengan LenteraBaca dalam satu sesi. Hasilnya akan mengisi enam metrik yang
-          saat ini masih kosong.
-        </p>
-        <p className="text-body">
-          <Link href="/" className="text-accent-600 underline underline-offset-2">
-            Kembali mencoba pencariannya
-          </Link>
-        </p>
-      </section>
     </div>
   );
 }

@@ -2,15 +2,24 @@ import { BookCover } from "@/components/book/BookCover";
 import { RatingDisplay } from "@/components/book/RatingDisplay";
 import { authorsOf, getPublisher, getSeries } from "@/data/catalog";
 import type { BookWork, Edition } from "@/lib/types";
+import { ShelfButton } from "../shelf/ShelfButton";
+import type { ReactNode } from "react";
 
 /**
  * Blok KARYA di halaman detail. RnD R-05 dan 17.2.
  *
  * Sengaja terpisah secara visual dari blok EDISI TERPILIH, dan keduanya
- * terbuka tanpa disclosure. Ini jawaban langsung untuk temuan F3, di mana
- * metadata buku di Goodreads tersembunyi di balik dropdown.
+ * terbuka tanpa disclosure (temuan F3).
  */
-export function WorkHero({ work, edition }: { work: BookWork; edition: Edition }) {
+export function WorkHero({
+  work,
+  edition,
+  actions,
+}: {
+  work: BookWork;
+  edition: Edition;
+  actions?: ReactNode;
+}) {
   const authors = authorsOf(work);
   const series = work.seriesId ? getSeries(work.seriesId) : undefined;
 
@@ -26,12 +35,22 @@ export function WorkHero({ work, edition }: { work: BookWork; edition: Edition }
         className="self-start shadow-1 sm:cover-lg"
       />
 
-      <div className="flex min-w-0 flex-col gap-2">
-        <p className="text-overline text-ink-500">Karya</p>
+      <div className="flex min-w-0 flex-1 flex-col gap-2">
+        <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
+          <div className="min-w-0">
+            <p className="text-overline text-ink-500">Karya</p>
 
-        <h1 id="judul-karya" className="font-title text-h1 text-ink-900" lang={edition.language}>
-          {edition.title}
-        </h1>
+            <h1
+              id="judul-karya"
+              className="font-title text-3xl text-h1 text-ink-900"
+              lang={edition.language}
+            >
+              {edition.title}
+            </h1>
+          </div>
+
+          {actions && <div className="shrink-0 lg:pt-2">{actions}</div>}
+        </div>
 
         {edition.title !== work.originalTitle && (
           <p className="text-body text-ink-500">

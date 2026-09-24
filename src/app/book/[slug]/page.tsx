@@ -95,15 +95,17 @@ export default async function BookDetailPage(props: PageProps<"/book/[slug]">) {
         </p>
       )}
 
-      <WorkHero work={work} edition={edition} />
-
-      <div className="flex flex-wrap items-start gap-3">
-        <ShelfButton
-          workId={work.id}
-          edition={edition}
-          publisherName={publisher?.name ?? "penerbit tidak diketahui"}
-        />
-      </div>
+      <WorkHero
+        work={work}
+        edition={edition}
+        actions={
+          <ShelfButton
+            workId={work.id}
+            edition={edition}
+            publisherName={publisher?.name ?? "penerbit tidak diketahui"}
+          />
+        }
+      />
 
       {!work.hasIndonesianEdition && (
         <EmptyState

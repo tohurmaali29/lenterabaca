@@ -8,11 +8,8 @@ import { cn } from "@/lib/cn";
 /**
  * Expand dan collapse yang SELALU bisa dikembalikan. RnD R-11 dan temuan F4.
  *
- * Di Goodreads, "show more" pada deskripsi dan bio penulis tidak punya
- * pasangan "show less", sehingga halaman memanjang dan user tidak bisa
- * kembali ke tampilan awal. Komponen ini memastikan itu tidak terulang:
- * label berubah, aria-expanded ikut berubah, dan teksnya tidak pernah
- * dihapus dari DOM supaya tetap bisa dicari browser.
+ * Label dan aria-expanded ikut berubah, dan teksnya tidak pernah dihapus
+ * dari DOM supaya tetap bisa dicari browser.
  */
 export function Disclosure({
   children,

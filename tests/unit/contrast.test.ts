@@ -6,10 +6,8 @@ import { describe, expect, it } from "vitest";
 /**
  * Kontras token. Sumber: RnD v2.1 bagian 18.1, 18.2, dan 21.1.
  *
- * Kolom kontras di dokumen RnD semula hanya berupa klaim yang ditulis tangan,
- * dan tiga di antaranya ternyata salah: ink-400 hanya 4,30, line-strong hanya
- * 1,60, dan rating-fill hanya 2,54. Test ini mengubah klaim itu menjadi
- * sesuatu yang dihitung, sehingga tidak bisa meleset lagi tanpa ketahuan.
+ * Rasio kontras dihitung, bukan ditulis tangan, supaya tidak bisa meleset
+ * tanpa ketahuan.
  *
  * Ambang mengikuti WCAG 2.1 AA:
  *  - teks isi minimal 4,5:1
@@ -76,9 +74,8 @@ function runSuite(themeName: string, theme: Record<string, string>) {
   describe(`tema ${themeName}`, () => {
     /**
      * Semua permukaan tempat teks bisa berdiri, bukan hanya dua yang utama.
-     * Kelalaian ini sempat lolos: ink-400 aman di surface tetapi hanya 3,89
-     * di atas accent-100, yang dipakai sebagai latar baris edisi terpilih
-     * di dalam drawer. Ketahuan oleh axe, bukan oleh test ini.
+     * Contoh: ink-400 aman di surface tetapi hanya 3,89 di atas accent-100,
+     * yang dipakai sebagai latar baris edisi terpilih di dalam drawer.
      */
     const surfaces: Array<[string, string]> = [
       ["surface", theme["--surface"]],

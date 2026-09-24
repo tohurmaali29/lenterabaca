@@ -6,8 +6,7 @@ import { describe, expect, it } from "vitest";
 /**
  * Guard untuk RnD bagian 18.2.
  *
- * Mode gelap dikerjakan di Phase 6, tetapi nilainya sudah didefinisikan
- * sejak Phase 1. Kegagalan yang paling mudah terjadi adalah menambah token
+ * Kegagalan yang paling mudah terjadi adalah menambah token
  * warna baru di blok terang lalu lupa menambahkannya di kedua blok gelap,
  * sehingga komponen terlihat benar di terang dan rusak di gelap.
  * Test ini menangkap itu sebelum sampai ke review manual.

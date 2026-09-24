@@ -22,16 +22,18 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       <WriteNotice />
 
       <header
-        className="sticky top-0 border-b border-line bg-surface/95 backdrop-blur"
+        className="sticky top-0 border-b border-line bg-surface/90 shadow-1 backdrop-blur-md"
         style={{ zIndex: "var(--z-header)" }}
       >
         <div className="container-page flex h-16 items-center gap-3 sm:gap-4">
           <Link
             href="/"
-            className="flex shrink-0 items-center gap-2 rounded-sm text-ink-900"
+            className="flex shrink-0 items-center gap-2 rounded-md text-ink-900 transition-colors hover:text-accent-700"
             aria-label="LenteraBaca, ke halaman utama"
           >
-            <Library aria-hidden="true" className="size-5 text-accent-600" />
+            <span className="flex size-8 items-center justify-center rounded-md bg-accent-100 text-accent-700">
+              <Library aria-hidden="true" className="size-4.5" />
+            </span>
             <span className="text-h3 font-semibold">LenteraBaca</span>
           </Link>
 
@@ -44,7 +46,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           <nav aria-label="Navigasi utama" className="shrink-0">
             <Link
               href="/my-books"
-              className="flex tap-target items-center gap-2 rounded-md px-3 text-body text-ink-700 hover:bg-surface-alt hover:text-ink-900"
+              className="flex tap-target items-center gap-2 rounded-md px-3 text-body text-ink-700 transition-[background-color,color,transform] duration-[var(--dur-micro)] hover:-translate-y-0.5 hover:bg-surface-alt hover:text-ink-900"
             >
               <BookMarked aria-hidden="true" className="size-4" />
               <span className="hidden sm:inline">Rak Saya</span>
@@ -58,7 +60,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         {children}
       </main>
 
-      <footer className="mt-auto border-t border-line bg-surface-alt">
+      <footer className="mt-auto border-t border-line bg-surface-alt/80">
         <div className="container-page flex flex-col gap-1 py-6 text-sm text-ink-500">
           <p>
             LenteraBaca - prototype redesign penemuan edisi terjemahan Indonesia. Data katalog

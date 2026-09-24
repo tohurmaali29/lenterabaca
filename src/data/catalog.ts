@@ -146,8 +146,8 @@ export function translatorsOf(edition: Edition): Translator[] {
 /**
  * Edisi terpilih awal untuk sebuah karya.
  *
- * RnD R-06, dua sumber teratas (URL dan localStorage) ditangani di Phase 4
- * dan Phase 5. Fungsi ini melayani dua langkah terakhir:
+ * RnD R-06, dua sumber teratas (URL dan localStorage) ditangani di client
+ * oleh EditionMemory. Fungsi ini melayani dua langkah terakhir:
  * edisi Bahasa Indonesia terbaru, lalu defaultEditionId.
  */
 export function initialEdition(work: BookWork): Edition {

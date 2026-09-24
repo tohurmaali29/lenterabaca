@@ -11,10 +11,9 @@ import type { Edition, ShelfStatus } from "@/lib/types";
 /**
  * Tombol simpan ke rak. RnD R-09 dan prinsip confidence before action.
  *
- * Yang membedakannya dari Goodreads: sebelum dan sesudah menyimpan, edisi
- * yang akan disimpan disebut secara eksplisit. Temuan F7 adalah user bisa
- * menyimpan buku tanpa sadar edisi mana yang melekat, dan itu diperbaiki
- * di sini, bukan di halaman lain.
+ * Sebelum dan sesudah menyimpan, edisi yang akan disimpan disebut secara
+ * eksplisit, supaya user tidak menyimpan buku tanpa sadar edisi mana yang
+ * melekat (temuan F7).
  */
 
 const STATUS_LABELS: Record<ShelfStatus, string> = {

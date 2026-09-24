@@ -1,10 +1,7 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
-/**
- * RnD 21.4: nol pelanggaran serius dan kritis.
- * Cakupan bertambah tiap fase. Phase 1 baru menguji shell dan halaman kosong.
- */
+/** RnD 21.4: nol pelanggaran serius dan kritis. */
 
 const ROUTES = [
   "/",

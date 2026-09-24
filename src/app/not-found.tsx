@@ -4,8 +4,7 @@ import { EmptyState } from "@/components/ui/EmptyState";
  * RnD X-05. Halaman 404 tetap memberi jalan keluar, bukan jalan buntu.
  *
  * Sengaja TIDAK menambahkan search bar sendiri: shell sudah menyediakan satu,
- * dan menambah satu lagi akan melanggar R-12, yaitu persis kesalahan yang
- * diaudit sebagai temuan F2 di Goodreads.
+ * dan menambah satu lagi akan melanggar R-12 (temuan F2).
  */
 export default function NotFound() {
   return (

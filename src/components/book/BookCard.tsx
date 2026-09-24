@@ -16,10 +16,6 @@ import type { SearchResult } from "@/lib/search/query";
  * Urutan informasi dikunci dan tidak boleh diatur ulang tanpa mengubah
  * dokumen: cover, judul, badge bahasa, penulis dan tahun, rating,
  * alasan kecocokan, edisi terpilih, lalu aksi.
- *
- * Dua baris yang paling menentukan adalah alasan kecocokan dan edisi
- * terpilih. Keduanya tidak ada sama sekali di Goodreads (temuan F6 dan F7),
- * dan keduanya yang membuat bahasa terlihat tanpa klik tambahan.
  */
 export function BookCard({
   result,
@@ -55,8 +51,9 @@ export function BookCard({
   return (
     <article
       className={cn(
-        "group flex gap-4 rounded-lg border border-line bg-surface-alt p-4",
-        "transition-shadow duration-[var(--dur-micro)] hover:shadow-2",
+        "group flex gap-4 rounded-lg border border-line bg-surface/85 p-4 shadow-1",
+        "transition-[border-color,box-shadow,transform,background-color] duration-[var(--dur-dropdown)] ease-[var(--ease-out)]",
+        "hover:-translate-y-0.5 hover:border-accent-600 hover:bg-surface hover:shadow-2",
       )}
     >
       <Link
@@ -72,13 +69,13 @@ export function BookCard({
           publisherName={publisher?.name ?? ""}
           size="sm"
           priority={priority}
-          className="sm:cover-md"
+          className="shadow-1 transition-transform duration-[var(--dur-dropdown)] group-hover:-translate-y-0.5 sm:cover-md"
         />
       </Link>
 
       <div className="flex min-w-0 flex-1 flex-col gap-1">
         <div className="flex flex-wrap items-start gap-x-2 gap-y-1">
-          <Heading className="min-w-0 text-h3 text-ink-900">
+          <Heading className="text-2xl min-w-0 text-h3 text-ink-900">
             <ResultLink
               href={`/book/${work.slug}?edition=${edition.id}`}
               workId={work.id}
@@ -118,7 +115,7 @@ export function BookCard({
             matchedOnField={matchedOn.field}
             className={cn(
               "inline-flex tap-target items-center rounded-md bg-accent-600 px-4 text-body font-medium text-accent-on",
-              "transition-colors duration-[var(--dur-micro)] hover:bg-accent-700",
+              "shadow-1 transition-[background-color,box-shadow,transform] duration-[var(--dur-micro)] hover:-translate-y-0.5 hover:bg-accent-700 hover:shadow-2 active:translate-y-0",
             )}
           >
             Lihat buku
@@ -128,7 +125,7 @@ export function BookCard({
             href={`/book/${work.slug}/editions`}
             className={cn(
               "inline-flex tap-target items-center rounded-md border border-line-strong px-4 text-body text-ink-700",
-              "transition-colors duration-[var(--dur-micro)] hover:bg-surface",
+              "transition-[background-color,border-color,color,transform] duration-[var(--dur-micro)] hover:-translate-y-0.5 hover:border-accent-600 hover:bg-surface-alt hover:text-ink-900 active:translate-y-0",
             )}
           >
             {work.hasIndonesianEdition

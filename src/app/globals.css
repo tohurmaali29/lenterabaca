@@ -13,24 +13,24 @@
   color-scheme: light;
 
   /* Permukaan */
-  --surface: #ffffff;
-  --surface-alt: #faf9f6;
-  --surface-sunken: #f2f0eb;
+  --surface: #fffdf8;
+  --surface-alt: #f7f2e8;
+  --surface-sunken: #eee5d6;
 
   /* Garis */
-  --line: #e5e3dd;
-  --line-strong: #847f76;
+  --line: #e7dcc8;
+  --line-strong: #8f7d63;
 
   /* Teks */
-  --ink-900: #1a1a18;
-  --ink-700: #3f3e3a;
-  --ink-500: #615f59;
-  --ink-400: #66645c;
+  --ink-900: #211b15;
+  --ink-700: #4b4034;
+  --ink-500: #716555;
+  --ink-400: #6f6252;
 
   /* Aksen */
-  --accent-700: #1f4a3d;
-  --accent-600: #276554;
-  --accent-100: #ddeae4;
+  --accent-700: #245246;
+  --accent-600: #2f6d5d;
+  --accent-100: #e3efe7;
   --accent-on: #ffffff;
 
   /* Badge bahasa */
@@ -84,7 +84,7 @@
    18.2 Warna - Dark
    Dua blok, sesuai pola di RnD bagian 18.2:
    1. mengikuti preferensi sistem, kecuali user memaksa terang
-   2. dipaksa gelap lewat data-theme (dipakai ThemeToggle di Phase 6)
+   2. dipaksa gelap lewat data-theme (dipakai ThemeToggle)
    ------------------------------------------------------------------------- */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
@@ -242,6 +242,7 @@
   --radius-md: 10px;
   --radius-lg: 14px;
   --radius-xl: 20px;
+  --radius-pill: 999px;
 
   /* 18.4 Elevasi */
   --shadow-1: var(--elev-1);
@@ -263,6 +264,24 @@
     font-size: var(--text-body);
     line-height: var(--text-body--line-height);
     -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: var(--accent-100);
+    color: var(--ink-900);
+  }
+
+  button,
+  [role="button"],
+  a[href],
+  select,
+  summary {
+    cursor: pointer;
+  }
+
+  button:disabled,
+  [aria-disabled="true"] {
+    cursor: not-allowed;
   }
 
   /* 21.1 Fokus selalu terlihat. Tidak pernah outline:none tanpa pengganti. */
@@ -287,6 +306,17 @@
       transition-property: opacity, color, background-color, border-color !important;
       scroll-behavior: auto !important;
     }
+  }
+}
+
+@keyframes search-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 }
 

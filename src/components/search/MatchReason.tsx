@@ -3,10 +3,6 @@ import { languageName } from "@/lib/format";
 
 /**
  * Satu baris yang menjelaskan KENAPA hasil ini muncul. RnD R-02 dan 26.5.
- *
- * Ini bukan hiasan. Problem statement project ini adalah user tidak tahu
- * apakah yang ia temukan benar-benar buku yang ia maksud. Menyebut field
- * mana yang cocok menjawab itu langsung, tanpa user perlu membuka detail.
  */
 export function MatchReason({ match }: { match: MatchInfo }) {
   const label = describe(match);

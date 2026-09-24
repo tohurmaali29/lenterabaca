@@ -1,7 +1,7 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
-/** Phase 6. RnD bagian 15, 18.2, 20, 21, 22. */
+/** RnD bagian 15, 18.2, 20, 21, 22. */
 
 test.describe("mode gelap (D-05)", () => {
   test("mengikuti preferensi sistem tanpa perlu memilih apa pun", async ({ browser }) => {

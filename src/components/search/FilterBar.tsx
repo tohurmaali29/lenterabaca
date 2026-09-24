@@ -15,8 +15,7 @@ import type { Format, LangCode } from "@/lib/types";
  *
  * Seluruh state filter hidup di URL, bukan di state React. Konsekuensinya:
  * hasil yang sudah disaring ke Bahasa Indonesia bisa dibagikan sebagai tautan,
- * dan tombol back mengembalikan filter sebelumnya. Itu justru bentuk paling
- * langsung dari solusi terhadap masalah yang diaudit (RnD D-01).
+ * dan tombol back mengembalikan filter sebelumnya (RnD D-01).
  *
  * Bahasa sengaja berupa chip yang selalu terlihat, bukan dropdown, karena
  * bahasa adalah atribut kelas satu di produk ini (prinsip language-first).
@@ -135,7 +134,7 @@ export function FilterBar({
           <button
             type="button"
             onClick={() => router.push(`${pathname}?q=${encodeURIComponent(query)}`)}
-            className="text-sm text-accent-600 underline underline-offset-2"
+            className="rounded-sm text-sm text-accent-600 underline underline-offset-2 transition-colors hover:text-accent-700"
           >
             Hapus {activeCount} filter
           </button>
@@ -165,10 +164,10 @@ function Chip({
       aria-pressed={active}
       className={cn(
         "rounded-pill inline-flex h-9 items-center gap-1.5 border px-3 text-sm",
-        "transition-colors duration-[var(--dur-micro)]",
+        "transition-[background-color,border-color,color,transform] duration-[var(--dur-micro)]",
         active
-          ? "border-accent-600 bg-accent-100 font-medium text-accent-700"
-          : "border-line-strong text-ink-700 hover:bg-surface-alt",
+          ? "border-accent-600 bg-accent-100 font-medium text-accent-700 shadow-1"
+          : "border-line-strong bg-surface text-ink-700 hover:-translate-y-0.5 hover:border-accent-600 hover:bg-surface-alt hover:text-ink-900",
       )}
     >
       {active && <Check aria-hidden="true" className="size-3.5" />}
@@ -201,7 +200,7 @@ function Dropdown({
         onChange={(event) => onChange(event.target.value)}
         className={cn(
           "h-9 rounded-md border border-line-strong bg-surface px-2 text-sm text-ink-900",
-          "hover:border-ink-400",
+          "transition-colors hover:border-accent-600",
         )}
       >
         {options.map((option) => (

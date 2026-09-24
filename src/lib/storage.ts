@@ -5,8 +5,7 @@
  * langsung dari komponen menyebabkan dua masalah yang sulit dilacak:
  * hydration mismatch, dan data rusak yang lolos tanpa validasi.
  *
- * Empat keadaan yang ditangani di sini, semuanya nyata dan semuanya pernah
- * merusak demo orang lain:
+ * Empat keadaan yang ditangani di sini:
  *  1. storage diblokir atau private mode  -> jatuh ke memori, banner X-02
  *  2. kuota penuh                          -> pangkas log, lalu X-03
  *  3. data tidak sesuai skema              -> kembali ke default, X-04

@@ -3,11 +3,10 @@ import type { TitleAlias, WorkId } from "@/lib/types";
 /**
  * Tabel alias judul. Sumber: RnD v2.1 bagian 26.2.
  *
- * Ini data KURASI MANUAL, bukan hasil algoritma, dan itu dinyatakan terbuka
- * di README serta di case study. Untuk pasangan judul yang tidak punya satu
- * kata pun yang sama, misalnya "Animal Farm" dan "Binatangisme", tidak ada
- * cara otomatis menghubungkannya tanpa sumber data eksternal. Berpura-pura
- * pencariannya pintar akan menyesatkan.
+ * Ini data KURASI MANUAL, bukan hasil algoritma. Untuk pasangan judul yang
+ * tidak punya satu kata pun yang sama, misalnya "Animal Farm" dan
+ * "Binatangisme", tidak ada cara otomatis menghubungkannya tanpa sumber
+ * data eksternal.
  *
  * Judul yang sudah ada di BookWork.titles tidak perlu diulang di sini.
  * Tabel ini hanya untuk sebutan lain yang dipakai orang saat mencari:
