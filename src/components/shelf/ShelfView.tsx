@@ -28,7 +28,6 @@ export interface EditionLookup {
  * Isi rak. RnD R-15 dan empty state E-07 serta E-08.
  *
  * Setiap item menyebut edisi yang disimpan, bukan hanya judul karyanya.
- * Inilah yang membuat rak terasa akurat, dan itu tujuan seluruh project.
  */
 export function ShelfView({ lookup }: { lookup: Record<string, EditionLookup> }) {
   const hydrated = useHydrated();

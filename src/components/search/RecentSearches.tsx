@@ -13,33 +13,43 @@ import { forgetSearch, recentSearchStore } from "@/lib/stores";
  * dihapus satu per satu, karena riwayat pencarian buku bisa jadi hal yang
  * tidak ingin dilihat orang lain di layar yang sama.
  */
-export function RecentSearches() {
+export function RecentSearches({ tone = "default" }: { tone?: "default" | "onImage" }) {
   const hydrated = useHydrated();
   const searches = useStore(recentSearchStore);
 
   if (!hydrated || searches.length === 0) return null;
 
   return (
-    <section aria-labelledby="judul-terakhir" className="mt-6">
-      <h2 id="judul-terakhir" className="text-sm font-medium text-ink-700">
+    <section aria-labelledby="judul-terakhir" className="mt-5">
+      <h2
+        id="judul-terakhir"
+        className={
+          tone === "onImage"
+            ? "text-xs font-semibold tracking-wide text-white/70 uppercase"
+            : "text-xs font-semibold tracking-wide text-ink-500 uppercase"
+        }
+      >
         Pencarian terakhir
       </h2>
 
-      <ul className="mt-2 flex flex-wrap gap-2">
+      <ul className="mt-2 flex flex-wrap gap-1.5">
         {searches.map((query) => (
-          <li key={query} className="rounded-pill flex items-center border border-line-strong">
+          <li
+            key={query}
+            className="rounded-pill flex items-center border border-line bg-surface shadow-1 transition-[border-color,background-color,box-shadow] duration-[var(--dur-micro)] hover:border-accent-600 hover:bg-surface-alt hover:shadow-2"
+          >
             <Link
               href={`/search?q=${encodeURIComponent(query)}`}
-              className="py-2 pl-4 text-sm text-ink-700 hover:text-ink-900"
+              className="py-1.5 pl-3 text-xs font-medium text-ink-700 hover:text-ink-900"
             >
               {query}
             </Link>
             <button
               type="button"
               onClick={() => forgetSearch(query)}
-              className="rounded-pill flex size-9 items-center justify-center text-ink-400 hover:text-ink-900"
+              className="rounded-pill flex size-7 items-center justify-center text-ink-400 transition-colors hover:bg-surface-sunken hover:text-ink-900"
             >
-              <X aria-hidden="true" className="size-3.5" />
+              <X aria-hidden="true" className="size-3" />
               <span className="sr-only">Hapus pencarian {query}</span>
             </button>
           </li>

@@ -15,8 +15,6 @@ import { SearchBar } from "@/components/search/SearchBar";
  * Di halaman discovery, search bar sudah hadir sebagai hero,
  * jadi slot ini tidak merender apa pun. Header, navbar, dan footer
  * tetap sama di semua route - yang bergeser hanya posisi search bar.
- * Ini beda dengan temuan F2 di Goodreads, di mana navbar itu sendiri
- * muncul belakangan sehingga menghasilkan dua navbar dan dua search bar.
  */
 export function HeaderSearchSlot() {
   const pathname = usePathname();

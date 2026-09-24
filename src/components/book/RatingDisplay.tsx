@@ -36,8 +36,8 @@ export function RatingDisplay({
   return (
     <p className={cn("flex flex-wrap items-center gap-x-1.5 text-sm", className)}>
       <span role="img" aria-label={label} className="flex items-center gap-1">
-        <Star aria-hidden="true" className="size-4 fill-rating-fill text-rating-fill" />
-        <span className="font-medium text-rating-text">{formatRating(summary.average)}</span>
+        <Star aria-hidden="true" className="size-6 fill-rating-fill text-rating-fill" />
+        <span className="text-xl text-rating-text">{formatRating(summary.average)}</span>
       </span>
       <span aria-hidden="true" className="text-ink-500">
         ({formatCount(summary.count)} rating {scopeLabel})

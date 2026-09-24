@@ -15,9 +15,7 @@ import {
 /**
  * Lapisan penyimpanan. Sumber: RnD v2.1 bagian 27.2.
  *
- * Yang diuji di sini adalah keadaan yang paling sering merusak prototype
- * orang lain dan paling jarang diuji: kuota penuh, storage diblokir,
- * dan data yang tidak sesuai skema.
+ * Yang diuji: kuota penuh, storage diblokir, dan data yang tidak sesuai skema.
  */
 
 const isStringList = (value: unknown): value is string[] =>

@@ -148,7 +148,6 @@ export interface Edition {
 
   cover: Cover;
 
-  /** Rating khusus edisi ini. */
   ratingSummary: RatingSummary;
   reviewCount: number;
 
@@ -156,7 +155,7 @@ export interface Edition {
   notes?: string;
 }
 
-/** ---- Data milik user, disimpan di localStorage (Phase 5) ---- */
+/** ---- Data milik user, disimpan di localStorage ---- */
 
 export interface ShelfItem {
   workId: WorkId;

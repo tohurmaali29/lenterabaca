@@ -6,10 +6,8 @@ import type { LangCode } from "@/lib/types";
 /**
  * Bobot skor dan tie-break. Sumber: RnD v2.1 bagian 26.3, 26.4, 26.5.
  *
- * Fungsi ini tidak hanya mengembalikan angka, tetapi juga ALASAN kecocokan.
- * Alasan itulah yang dirender komponen MatchReason, dan itu bentuk paling
- * langsung dari jawaban terhadap problem statement: user tahu kenapa sebuah
- * hasil muncul, bukan sekadar disodori daftar.
+ * Fungsi ini tidak hanya mengembalikan angka, tetapi juga ALASAN kecocokan
+ * yang dirender komponen MatchReason.
  */
 
 export type MatchField =

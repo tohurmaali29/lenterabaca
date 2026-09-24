@@ -7,11 +7,10 @@ import { useHydrated } from "@/hooks/useStore";
 import { cn } from "@/lib/cn";
 
 /**
- * Peralihan tema. RnD D-05, dikerjakan di Phase 6 seperti dijadwalkan.
+ * Peralihan tema. RnD D-05.
  *
- * Token gelap sudah lengkap sejak Phase 1, jadi komponen ini hanya perlu
- * mengatur data-theme di elemen html. Tanpa pilihan apa pun, halaman
- * mengikuti preferensi sistem, yang memang perilaku yang benar.
+ * Komponen ini hanya mengatur data-theme di elemen html. Tanpa pilihan
+ * apa pun, halaman mengikuti preferensi sistem.
  */
 
 type Theme = "system" | "light" | "dark";

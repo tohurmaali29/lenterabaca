@@ -3,8 +3,7 @@
  * "Studi Kasus Mencari Edisi Indonesia" beserta 13 tangkapan layarnya.
  *
  * Setiap temuan dipasangkan dengan apa yang dilakukan LenteraBaca, dan
- * dengan requirement yang menguncinya. Tanpa pasangan itu, redesign hanya
- * berupa klaim.
+ * dengan requirement yang menguncinya.
  */
 
 export interface AuditFinding {
