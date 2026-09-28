@@ -18,8 +18,6 @@ import type {
 } from "@/lib/types";
 
 /**
- * Builder fixtures.
- *
  * Tiga hal yang sengaja dihitung di sini, bukan ditulis tangan per edisi:
  *  - cover: url, ukuran, dan alt diturunkan dari judul, penerbit, dan tahun
  *  - ratingSummary: average dan count diturunkan dari histogram (RnD 24.3)

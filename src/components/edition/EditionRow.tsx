@@ -11,7 +11,7 @@ import {
 import type { Edition } from "@/lib/types";
 
 /**
- * Satu baris edisi. Dipakai di drawer dan di halaman daftar edisi.
+ * Dipakai di drawer dan di halaman daftar edisi.
  *
  * Baris cetakan dan label edisi ada khusus untuk kasus "cover mirip tetapi
  * terbitannya berbeda" (EC-4), yang tanpa keduanya tidak mungkin dibedakan.

@@ -6,8 +6,6 @@ import { useSyncExternalStore } from "react";
 import { writeStatusStore } from "@/lib/stores";
 
 /**
- * Pemberitahuan ketika penyimpanan gagal. RnD X-03.
- *
  * Dipasang sekali di shell dan memantau hasil penulisan terakhir dari
  * store mana pun, supaya setiap penulis tidak perlu menangani kasus ini
  * sendiri-sendiri dan tidak ada yang terlewat.

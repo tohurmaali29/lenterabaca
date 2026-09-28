@@ -9,11 +9,9 @@ import { clearAll } from "@/lib/storage";
 import { eventStore, logEvent } from "@/lib/stores";
 
 /**
- * Alat demo. RnD bagian 27.2 (reset) dan bagian 30 (log aktivitas).
- *
  * Log ini bukan analytics: tidak ada yang dikirim ke mana pun. Gunanya dua,
- * menjadi data mentah saat usability test di Phase 8, dan menjadi bahan
- * angka di case study.
+ * menjadi data mentah saat usability test, dan menjadi bahan angka di case
+ * study.
  */
 export function DemoTools() {
   const hydrated = useHydrated();

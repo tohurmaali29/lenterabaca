@@ -7,8 +7,6 @@ import { useHydrated } from "@/hooks/useStore";
 import { cn } from "@/lib/cn";
 
 /**
- * Peralihan tema. RnD D-05.
- *
  * Komponen ini hanya mengatur data-theme di elemen html. Tanpa pilihan
  * apa pun, halaman mengikuti preferensi sistem.
  */
@@ -48,7 +46,7 @@ export function ThemeToggle() {
     <div
       role="group"
       aria-label="Tema tampilan"
-      className="rounded-pill flex items-center gap-0.5 border border-line p-0.5"
+      className="flex items-center gap-0.5 rounded-pill border border-line p-0.5"
     >
       {OPTIONS.map(({ value, label, Icon }) => (
         <button
@@ -58,7 +56,7 @@ export function ThemeToggle() {
           aria-pressed={theme === value}
           title={label}
           className={cn(
-            "rounded-pill flex size-8 items-center justify-center",
+            "flex size-8 items-center justify-center rounded-pill",
             "transition-colors duration-[var(--dur-micro)]",
             theme === value
               ? "bg-accent-100 text-accent-700"

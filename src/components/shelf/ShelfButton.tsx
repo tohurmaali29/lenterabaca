@@ -9,8 +9,6 @@ import { logEvent, setShelfStatus, shelfStore } from "@/lib/stores";
 import type { Edition, ShelfStatus } from "@/lib/types";
 
 /**
- * Tombol simpan ke rak. RnD R-09 dan prinsip confidence before action.
- *
  * Sebelum dan sesudah menyimpan, edisi yang akan disimpan disebut secara
  * eksplisit, supaya user tidak menyimpan buku tanpa sadar edisi mana yang
  * melekat (temuan F7).

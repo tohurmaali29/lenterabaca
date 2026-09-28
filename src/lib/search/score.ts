@@ -4,8 +4,6 @@ import { diceFromSets, TRIGRAM_THRESHOLD, trigrams } from "@/lib/search/trigram"
 import type { LangCode } from "@/lib/types";
 
 /**
- * Bobot skor dan tie-break. Sumber: RnD v2.1 bagian 26.3, 26.4, 26.5.
- *
  * Fungsi ini tidak hanya mengembalikan angka, tetapi juga ALASAN kecocokan
  * yang dirender komponen MatchReason.
  */
@@ -33,7 +31,7 @@ export interface ScoredMatch {
   matchedOn: MatchInfo;
 }
 
-/** RnD 26.3. Nilai mentah sebelum boost. */
+/** Nilai mentah sebelum boost. */
 const WEIGHT = {
   isbnExact: 100,
   titleExact: 90,
@@ -47,7 +45,6 @@ const WEIGHT = {
   subject: 15,
 } as const;
 
-/** RnD 26.4. */
 export const SCORE_THRESHOLD = 30;
 export const DID_YOU_MEAN_THRESHOLD = 45;
 const BOOST_LANGUAGE_FILTER = 12;

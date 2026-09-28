@@ -1,8 +1,6 @@
 import type { Review, ShelfItem } from "@/lib/types";
 
 /**
- * Data awal kunjungan pertama. Sumber: RnD v2.1 bagian 27.2.
- *
  * Tanpa ini, orang yang membuka demo melihat rak kosong dan tidak ada review
  * sama sekali, sehingga bagian paling penting dari produk justru tidak
  * terlihat. Jumlahnya sengaja kecil supaya user tetap punya ruang mencoba.

@@ -11,8 +11,6 @@ import { logEvent } from "@/lib/stores";
 import type { Format, LangCode } from "@/lib/types";
 
 /**
- * Filter hasil pencarian. RnD R-04, 17.1, 20.
- *
  * Seluruh state filter hidup di URL, bukan di state React. Konsekuensinya:
  * hasil yang sudah disaring ke Bahasa Indonesia bisa dibagikan sebagai tautan,
  * dan tombol back mengembalikan filter sebelumnya (RnD D-01).
@@ -71,11 +69,15 @@ export function FilterBar({
 
   return (
     <div className="flex flex-col gap-3">
-      <div className="flex flex-wrap items-center gap-2">
+      <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center">
         <span id="filter-bahasa" className="text-sm font-medium text-ink-700">
           Bahasa
         </span>
-        <div role="group" aria-labelledby="filter-bahasa" className="flex flex-wrap gap-2">
+        <div
+          role="group"
+          aria-labelledby="filter-bahasa"
+          className="-mx-4 flex [scrollbar-width:none] gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0 sm:pb-0"
+        >
           <Chip
             active={activeLanguage === "all"}
             onClick={() => update("lang", "all")}
@@ -93,7 +95,7 @@ export function FilterBar({
         </div>
       </div>
 
-      <div className="flex flex-wrap items-center gap-x-4 gap-y-3">
+      <div className="grid grid-cols-2 gap-3 sm:flex sm:flex-wrap sm:items-center sm:gap-x-4">
         <Dropdown
           label="Format"
           value={activeFormat}
@@ -109,6 +111,7 @@ export function FilterBar({
 
         <Dropdown
           label="Penerbit"
+          className="order-last col-span-2 sm:order-none"
           value={activePublisher}
           onChange={(value) => update("publisher", value)}
           options={[
@@ -134,7 +137,7 @@ export function FilterBar({
           <button
             type="button"
             onClick={() => router.push(`${pathname}?q=${encodeURIComponent(query)}`)}
-            className="rounded-sm text-sm text-accent-600 underline underline-offset-2 transition-colors hover:text-accent-700"
+            className="order-last col-span-2 justify-self-start rounded-sm text-sm text-accent-600 underline underline-offset-2 transition-colors hover:text-accent-700 sm:order-none"
           >
             Hapus {activeCount} filter
           </button>
@@ -163,7 +166,7 @@ function Chip({
       onClick={onClick}
       aria-pressed={active}
       className={cn(
-        "rounded-pill inline-flex h-9 items-center gap-1.5 border px-3 text-sm",
+        "inline-flex h-9 shrink-0 items-center gap-1.5 rounded-pill border px-3 text-sm",
         "transition-[background-color,border-color,color,transform] duration-[var(--dur-micro)]",
         active
           ? "border-accent-600 bg-accent-100 font-medium text-accent-700 shadow-1"
@@ -186,20 +189,27 @@ function Dropdown({
   value,
   onChange,
   options,
+  className,
 }: {
   label: string;
   value: string;
   onChange: (value: string) => void;
   options: Array<{ value: string; label: string }>;
+  className?: string;
 }) {
   return (
-    <label className="flex items-center gap-2 text-sm text-ink-700">
+    <label
+      className={cn(
+        "flex min-w-0 flex-col gap-1 text-sm text-ink-700 sm:flex-row sm:items-center sm:gap-2",
+        className,
+      )}
+    >
       <span className="font-medium">{label}</span>
       <select
         value={value}
         onChange={(event) => onChange(event.target.value)}
         className={cn(
-          "h-9 rounded-md border border-line-strong bg-surface px-2 text-sm text-ink-900",
+          "h-10 w-full rounded-md border border-line-strong bg-surface px-2 text-sm text-ink-900 sm:h-9 sm:w-auto",
           "transition-colors hover:border-accent-600",
         )}
       >
@@ -214,8 +224,6 @@ function Dropdown({
 }
 
 /**
- * Pengumuman jumlah hasil untuk screen reader. RnD 21.3.
- *
  * Di-debounce terpisah dari pencarian supaya tidak membanjiri screen reader
  * saat user mengubah beberapa filter berturut-turut.
  */

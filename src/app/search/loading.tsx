@@ -1,6 +1,4 @@
 /**
- * Skeleton hasil pencarian. RnD L-01.
- *
  * aria-busy dipasang di kontainer dan tidak ada teks palsu di dalamnya,
  * supaya screen reader tidak membacakan isi yang belum ada (RnD 21.3).
  */

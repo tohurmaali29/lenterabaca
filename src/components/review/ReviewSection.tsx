@@ -11,9 +11,7 @@ import { logEvent, removeReview, reviewStore } from "@/lib/stores";
 import type { Edition, LangCode } from "@/lib/types";
 
 /**
- * Daftar review beserta filter bahasa edisi. RnD R-13 dan R-14.
- *
- * Filter bahasa di sini bukan fitur tambahan: kualitas terjemahan berbeda
+ * Filter bahasa ada karena kualitas terjemahan berbeda
  * antar penerbit, jadi review dari edisi Bahasa Indonesia tidak selalu
  * relevan bagi pembaca edisi Inggris, dan sebaliknya.
  */

@@ -6,8 +6,6 @@ import { useId } from "react";
 import { cn } from "@/lib/cn";
 
 /**
- * Input rating bintang. RnD 21.3.
- *
  * Memakai lima radio asli yang disembunyikan secara visual, bukan tombol
  * atau div. Konsekuensinya: panah kiri dan kanan bekerja tanpa kode
  * tambahan, screen reader membacakannya sebagai pilihan, dan nilainya ikut

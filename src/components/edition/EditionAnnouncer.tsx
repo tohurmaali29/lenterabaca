@@ -3,8 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 
 /**
- * Mengumumkan pergantian edisi ke screen reader. RnD 21.3.
- *
  * Tanpa ini, mengganti edisi hanya terlihat sebagai perubahan warna dan teks
  * di tengah halaman. Pengguna screen reader tidak akan tahu aksinya berhasil.
  */

@@ -2,8 +2,6 @@ import { expect, test } from "@playwright/test";
 
 /**
  * RnD 14.1 R-12: di halaman apa pun, hanya ada satu navbar dan satu search bar.
- * Ini regression guard langsung untuk temuan F2, di mana Goodreads menampilkan
- * dua navbar dan dua search bar setelah pencarian dijalankan.
  */
 
 const ROUTES = ["/", "/search?q=laskar", "/my-books", "/about"];

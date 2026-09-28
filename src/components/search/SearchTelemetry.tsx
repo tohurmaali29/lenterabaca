@@ -5,8 +5,6 @@ import { useEffect, useRef } from "react";
 import { logEvent } from "@/lib/stores";
 
 /**
- * Pencatat peristiwa halaman hasil. RnD bagian 30.
- *
  * Dipasang di halaman hasil, bukan di dalam kolom pencarian, karena jumlah
  * hasil dan skor tertinggi baru diketahui setelah pencarian dijalankan.
  * Semuanya hanya masuk localStorage dan tidak dikirim ke mana pun.

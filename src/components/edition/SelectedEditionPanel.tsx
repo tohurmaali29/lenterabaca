@@ -12,11 +12,8 @@ import { EDITION_RATING_MIN_COUNT } from "@/lib/rating";
 import type { BookWork, Edition } from "@/lib/types";
 
 /**
- * Blok EDISI TERPILIH. RnD R-05, R-07, 17.2, prinsip edition-aware.
- *
  * Selalu terbuka, tidak pernah di balik disclosure. Rating edisi ditampilkan
- * terpisah dari rating karya, dan cakupannya selalu disebut, karena
- * mencampur keduanya adalah temuan F7.
+ * terpisah dari rating karya, dan cakupannya selalu disebut (temuan F7).
  */
 export function SelectedEditionPanel({
   work,

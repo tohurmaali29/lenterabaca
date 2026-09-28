@@ -8,11 +8,8 @@ import { ThemeToggle } from "@/components/shell/ThemeToggle";
 import { WriteNotice } from "@/components/shell/WriteNotice";
 
 /**
- * Shell tunggal untuk seluruh route.
- *
- * Menjawab temuan F1 dan F2 di RnD bagian 3:
- * - header dan navigasi selalu ada di viewport atas, tidak perlu scroll
- * - strukturnya tidak kondisional, jadi tidak pernah ada dua navbar
+ * Shell tunggal untuk seluruh route. Strukturnya tidak kondisional, jadi
+ * tidak pernah ada dua navbar (temuan F2).
  */
 export function AppShell({ children }: { children: React.ReactNode }) {
   return (
@@ -25,7 +22,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         className="sticky top-0 border-b border-line bg-surface/90 shadow-1 backdrop-blur-md"
         style={{ zIndex: "var(--z-header)" }}
       >
-        <div className="container-page flex h-16 items-center gap-3 sm:gap-4">
+        <div className="group container-page flex h-16 items-center gap-2 sm:gap-4">
           <Link
             href="/"
             className="flex shrink-0 items-center gap-2 rounded-md text-ink-900 transition-colors hover:text-accent-700"
@@ -34,19 +31,23 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             <span className="flex size-8 items-center justify-center rounded-md bg-accent-100 text-accent-700">
               <Library aria-hidden="true" className="size-4.5" />
             </span>
-            <span className="text-h3 font-semibold">LenteraBaca</span>
+            {/* Di mobile, nama disembunyikan saat header memuat search bar supaya kolomnya
+                cukup lebar, dan di layar di bawah 360px supaya tombol tema tetap muat. */}
+            <span className="text-h3 font-semibold max-[359px]:hidden max-sm:group-has-[[role=search]]:hidden">
+              LenteraBaca
+            </span>
           </Link>
 
           <HeaderSearchSlot />
 
-          <div className="ml-auto hidden shrink-0 sm:block">
+          <div className="ml-auto shrink-0">
             <ThemeToggle />
           </div>
 
           <nav aria-label="Navigasi utama" className="shrink-0">
             <Link
               href="/my-books"
-              className="flex tap-target items-center gap-2 rounded-md px-3 text-body text-ink-700 transition-[background-color,color,transform] duration-[var(--dur-micro)] hover:-translate-y-0.5 hover:bg-surface-alt hover:text-ink-900"
+              className="flex tap-target items-center justify-center gap-2 rounded-md px-2 text-body text-ink-700 transition-[background-color,color,transform] duration-[var(--dur-micro)] hover:-translate-y-0.5 hover:bg-surface-alt hover:text-ink-900 sm:px-3"
             >
               <BookMarked aria-hidden="true" className="size-4" />
               <span className="hidden sm:inline">Rak Saya</span>
@@ -60,17 +61,15 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         {children}
       </main>
 
-      <footer className="mt-auto border-t border-line bg-surface-alt/80">
-        <div className="container-page flex flex-col gap-1 py-6 text-sm text-ink-500">
+      <footer className="mt-16 border-t border-line">
+        <div className="container-page flex flex-wrap items-center justify-between gap-x-6 gap-y-2 py-6 text-sm text-ink-500">
           <p>
-            LenteraBaca - prototype redesign penemuan edisi terjemahan Indonesia. Data katalog
-            adalah fixtures kurasi, bukan katalog nyata.
+            <span className="font-semibold text-ink-700">LenteraBaca</span> &middot; prototype, data
+            katalog hasil kurasi
           </p>
-          <p>
-            <Link href="/about" className="text-accent-600 underline underline-offset-2">
-              Tentang project dan metodenya
-            </Link>
-          </p>
+          <Link href="/about" className="text-accent-600 underline-offset-2 hover:underline">
+            Tentang project
+          </Link>
         </div>
       </footer>
     </>

@@ -5,8 +5,6 @@ import Link from "next/link";
 import { logEvent } from "@/lib/stores";
 
 /**
- * Tautan hasil pencarian yang mencatat posisi kliknya. RnD bagian 30.
- *
  * Posisi klik dipakai untuk menilai apakah alasan kecocokan membantu:
  * kalau user rutin melewati hasil teratas, berarti penjelasannya belum
  * cukup meyakinkan, atau peringkatnya yang keliru.
