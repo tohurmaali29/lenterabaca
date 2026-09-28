@@ -4,8 +4,6 @@ import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
 
 /**
- * Kontras token. Sumber: RnD v2.1 bagian 18.1, 18.2, dan 21.1.
- *
  * Rasio kontras dihitung, bukan ditulis tangan, supaya tidak bisa meleset
  * tanpa ketahuan.
  *

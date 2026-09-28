@@ -5,12 +5,7 @@ import { formatCount, formatRating } from "@/lib/format";
 import type { RatingScope } from "@/lib/rating";
 import type { RatingSummary } from "@/lib/types";
 
-/**
- * Tampilan rating. RnD 24.3 dan 21.3.
- *
- * Cakupan WAJIB disebut. Angka rating tanpa keterangan karya atau edisi
- * adalah salah satu sumber kebingungan yang diaudit di temuan F7.
- */
+/** Cakupan (karya atau edisi) WAJIB disebut, karena angka tanpa cakupan membingungkan (temuan F7). */
 export function RatingDisplay({
   summary,
   scope,

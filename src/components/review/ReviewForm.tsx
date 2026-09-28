@@ -11,8 +11,6 @@ import { logEvent, reviewStore, saveReview } from "@/lib/stores";
 import type { Edition, Review } from "@/lib/types";
 
 /**
- * Form review. RnD R-13 dan prinsip confidence before action.
- *
  * Edisi yang direview ditampilkan sebagai teks di dalam form, bukan
  * diasumsikan dari konteks halaman. Review yang tersimpan membawa
  * workId, editionId, dan readLanguage sekaligus, sehingga bisa difilter

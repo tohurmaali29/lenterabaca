@@ -8,8 +8,6 @@ import { languageName } from "@/lib/format";
 import type { LangCode } from "@/lib/types";
 
 /**
- * Daftar edisi lengkap. RnD D-02 dan 13.
- *
  * Drawer adalah jalur utama, halaman ini adalah fallback-nya: bisa dibagikan
  * sebagai tautan, bisa dibuka tanpa JavaScript, dan bisa diindeks. Memilih
  * edisi di sini berarti kembali ke halaman detail dengan parameter edition,

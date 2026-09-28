@@ -1,8 +1,6 @@
 import { work, type WorkSeed } from "@/data/build";
 
 /**
- * 18 karya. Sumber: RnD v2.1 bagian 25.
- *
  * Ini curated local fixtures, bukan katalog bibliografi. Judul, penulis, dan
  * penerbit adalah karya dan organisasi nyata, tetapi kombinasi edisi, tahun,
  * halaman, ISBN, dan rating dibuat untuk pengujian.

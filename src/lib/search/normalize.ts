@@ -1,6 +1,4 @@
 /**
- * Pipeline normalisasi pencarian. Sumber: RnD v2.1 bagian 26.1.
- *
  * Tujuannya membuat "Saint-Exupéry", "saint exupery", dan "Saint Exupery"
  * menjadi satu bentuk yang sama, supaya pencocokan tidak gagal hanya karena
  * diakritik, tanda hubung, atau huruf besar.
@@ -8,17 +6,14 @@
 
 /** Artikel di awal judul yang diabaikan saat mencocokkan. */
 const LEADING_ARTICLES = new Set([
-  // Inggris
   "the",
   "a",
   "an",
-  // Indonesia
   "sang",
   "si",
   "para",
   "sebuah",
   "suatu",
-  // Lain
   "le",
   "la",
   "les",

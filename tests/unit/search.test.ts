@@ -6,11 +6,8 @@ import { search, suggestions, displayEdition } from "@/lib/search/query";
 import type { LangCode, PublisherId } from "@/lib/types";
 
 /**
- * Pencarian. Sumber: RnD v2.1 bagian 26 dan acceptance criteria R-01 sampai R-04.
- *
- * Bagian terpenting adalah sepuluh query uji di bawah. Definition of Done
- * Phase 3 menuntut hasil PERTAMA-nya benar, bukan sekadar muncul di daftar,
- * karena user memindai dari atas.
+ * Bagian terpenting adalah sepuluh query uji di bawah: hasil PERTAMA-nya
+ * harus benar, bukan sekadar muncul di daftar, karena user memindai dari atas.
  */
 
 describe("normalisasi (RnD 26.1)", () => {
@@ -66,8 +63,8 @@ describe("trigram (RnD 26.3)", () => {
 });
 
 /**
- * Sepuluh query uji. Ini kontrak Phase 3: kalau salah satu berubah,
- * bobot skor di score.ts berubah dan harus dibahas, bukan ditambal.
+ * Sepuluh query uji. Kalau salah satu berubah, bobot skor di score.ts
+ * berubah dan harus dibahas, bukan ditambal.
  */
 const QUERY_CASES: Array<{ query: string; expectSlug: string; why: string }> = [
   { query: "laskar pelangi", expectSlug: "laskar-pelangi", why: "judul asli Indonesia" },
@@ -86,7 +83,7 @@ const QUERY_CASES: Array<{ query: string; expectSlug: string; why: string }> = [
   },
 ];
 
-describe("sepuluh query uji (DoD Phase 3)", () => {
+describe("sepuluh query uji", () => {
   for (const testCase of QUERY_CASES) {
     it(`"${testCase.query}" -> ${testCase.expectSlug} (${testCase.why})`, () => {
       const response = search(testCase.query);

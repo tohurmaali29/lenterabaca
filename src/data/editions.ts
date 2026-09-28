@@ -2,8 +2,6 @@ import { edition } from "@/data/build";
 import type { Edition } from "@/lib/types";
 
 /**
- * 59 edisi untuk 18 karya. Sumber: RnD v2.1 bagian 25 dan 25.1.
- *
  * Ini curated local fixtures, BUKAN katalog bibliografi. Tahun, jumlah
  * halaman, ISBN, cetakan, dan rating dibuat untuk pengujian. Nama penerbit
  * adalah organisasi nyata, nama penerjemah fiktif (RnD bagian 25).

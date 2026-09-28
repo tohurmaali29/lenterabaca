@@ -15,8 +15,7 @@ import { summarize } from "@/lib/rating";
 import { renderCoverSvg } from "@/lib/cover";
 
 /**
- * Validasi fixtures. Ini yang dimaksud Definition of Done Phase 2 di
- * RnD v2.1 bagian 31: tidak ada referensi menggantung, histogram konsisten
+ * Validasi fixtures: tidak ada referensi menggantung, histogram konsisten
  * dengan count, seluruh edge case hadir, dan minimal 12 karya punya
  * edisi Bahasa Indonesia.
  *

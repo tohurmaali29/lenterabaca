@@ -5,8 +5,6 @@ import { usePathname } from "next/navigation";
 import { SearchBar } from "@/components/search/SearchBar";
 
 /**
- * Slot search di header.
- *
  * Kenapa client island kecil, bukan logika di dalam AppShell:
  * AppShell tetap Server Component (RnD D-11), dan keputusan
  * "satu search bar saja per dokumen" (R-12) terkumpul di satu tempat

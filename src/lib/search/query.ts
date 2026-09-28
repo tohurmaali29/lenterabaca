@@ -9,10 +9,6 @@ import {
 } from "@/lib/search/score";
 import type { BookWork, Edition, Format, LangCode, PublisherId } from "@/lib/types";
 
-/**
- * API publik pencarian. Sumber: RnD v2.1 bagian 26 dan 14.1 R-01 sampai R-04.
- */
-
 export const MIN_QUERY_LENGTH = 2;
 export const MAX_RESULTS = 50;
 
@@ -181,7 +177,6 @@ export function suggestions(rawQuery: string, limit = 4): SearchResult[] {
     }));
 }
 
-/** Karya populer untuk halaman discovery, tanpa query. */
 export function popularWorks(limit = 6): SearchResult[] {
   return [...searchIndex]
     .sort((a, b) => b.work.ratingSummary.count - a.work.ratingSummary.count)

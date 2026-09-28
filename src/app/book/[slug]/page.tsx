@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import { AuthorAvatar } from "@/components/book/AuthorAvatar";
 import { WorkHero } from "@/components/book/WorkHero";
 import { EditionAnnouncer } from "@/components/edition/EditionAnnouncer";
 import { EditionMemory } from "@/components/edition/EditionMemory";
@@ -10,6 +11,7 @@ import { ReviewSection } from "@/components/review/ReviewSection";
 import { ShelfButton } from "@/components/shelf/ShelfButton";
 import { Disclosure } from "@/components/ui/Disclosure";
 import { EmptyState } from "@/components/ui/EmptyState";
+import { SectionHeading } from "@/components/ui/SectionHeading";
 import {
   authorsOf,
   editionsOf,
@@ -22,15 +24,7 @@ import {
 import { languageName } from "@/lib/format";
 import type { EditionId } from "@/lib/types";
 
-/**
- * Halaman detail buku. RnD R-05 sampai R-08, R-11, dan 17.2.
- *
- * Perubahan inti dibanding Goodreads:
- *  - blok Karya dan blok Edisi Terpilih terpisah dan keduanya terbuka (F3)
- *  - rating karya dan rating edisi ditampilkan terpisah dengan cakupannya (F7)
- *  - setiap disclosure punya pasangan tutup (F4)
- *  - edisi terpilih bisa di-deep-link lewat ?edition= (R-08)
- */
+/** Edisi terpilih bisa di-deep-link lewat ?edition= (R-08). */
 
 export function generateStaticParams() {
   return works.map((work) => ({ slug: work.slug }));
@@ -136,39 +130,34 @@ export default async function BookDetailPage(props: PageProps<"/book/[slug]">) {
       />
 
       <section aria-labelledby="judul-deskripsi">
-        <h2 id="judul-deskripsi" className="text-h2 text-ink-900">
-          Deskripsi
-        </h2>
-        <Disclosure className="mt-2">
+        <SectionHeading id="judul-deskripsi">Deskripsi</SectionHeading>
+        <Disclosure className="mt-3">
           <p lang={work.descriptionLang}>{work.description}</p>
         </Disclosure>
       </section>
 
       <section aria-labelledby="judul-penulis">
-        <h2 id="judul-penulis" className="text-h2 text-ink-900">
-          Tentang penulis
-        </h2>
-        <Disclosure className="mt-2" collapsedLines={3}>
-          <p>
-            {authors.map((author) => author.name).join(", ")}
-            {authors.some((author) => author.altNames.length > 0) && (
-              <>
-                {" "}
-                &middot; dikenal juga sebagai{" "}
-                {authors.flatMap((author) => author.altNames).join(", ")}
-              </>
-            )}
-            . Profil penulis yang lengkap berada di luar cakupan prototype ini, sesuai batas scope
-            di dokumen RnD bagian 9.
-          </p>
-        </Disclosure>
+        <SectionHeading id="judul-penulis">Tentang penulis</SectionHeading>
+        <ul className="mt-4 flex flex-col gap-4">
+          {authors.map((author) => (
+            <li key={author.id} className="flex items-center gap-4">
+              <AuthorAvatar author={author} />
+              <div className="min-w-0">
+                <p className="text-body-lg font-semibold text-ink-900">{author.name}</p>
+                {author.altNames.length > 0 && (
+                  <p className="text-sm text-ink-500">
+                    Dikenal juga sebagai {author.altNames.join(", ")}
+                  </p>
+                )}
+              </div>
+            </li>
+          ))}
+        </ul>
       </section>
 
       <section aria-labelledby="judul-review">
-        <h2 id="judul-review" className="text-h2 text-ink-900">
-          Review
-        </h2>
-        <div className="mt-3">
+        <SectionHeading id="judul-review">Review</SectionHeading>
+        <div className="mt-4">
           <ReviewSection
             workId={work.id}
             edition={edition}

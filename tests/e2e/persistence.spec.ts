@@ -1,10 +1,5 @@
 import { expect, test } from "@playwright/test";
 
-/**
- * Persistensi. RnD R-09, R-10, R-13, R-15.
- * T6 di skenario usability test juga diuji di sini.
- */
-
 test("simpan ke rak menyebut edisinya, sebelum dan sesudah (R-09)", async ({ page }) => {
   await page.goto("/book/cantik-itu-luka?edition=ed-ci-1");
 

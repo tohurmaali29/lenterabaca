@@ -1,8 +1,5 @@
 /**
- * Model data LenteraBaca. Sumber: RnD v2.1 bagian 24.
- *
- * Tiga perbaikan penting dari draft awal, semuanya berada tepat di titik
- * masalah yang diaudit:
+ * Prinsip model data:
  *  - setiap judul membawa bahasanya (Title), bukan array string tanpa bahasa
  *  - rating ada di level karya DAN level edisi
  *  - penerbit, penulis, dan penerjemah adalah entitas, bukan string bebas
@@ -53,6 +50,8 @@ export interface Author {
   name: string;
   /** Ejaan alternatif dan transliterasi, dipakai pencarian (EC-8). */
   altNames: string[];
+  /** Path foto di public/, misalnya "/authors/j-k-rowling.jpg". Tanpa ini, UI memakai inisial. */
+  photo?: string;
 }
 
 export interface Publisher {
@@ -112,7 +111,7 @@ export interface BookWork {
 
   defaultEditionId: EditionId;
 
-  /** ---- Field turunan, dihitung di data/catalog.ts, bukan ditulis tangan ---- */
+  // Field turunan, dihitung di data/catalog.ts, bukan ditulis tangan.
   editionIds: EditionId[];
   availableLanguages: LangCode[];
   hasIndonesianEdition: boolean;
@@ -155,7 +154,7 @@ export interface Edition {
   notes?: string;
 }
 
-/** ---- Data milik user, disimpan di localStorage ---- */
+// Data milik user, disimpan di localStorage.
 
 export interface ShelfItem {
   workId: WorkId;

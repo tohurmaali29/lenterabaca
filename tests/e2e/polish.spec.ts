@@ -1,8 +1,6 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
-/** RnD bagian 15, 18.2, 20, 21, 22. */
-
 test.describe("mode gelap (D-05)", () => {
   test("mengikuti preferensi sistem tanpa perlu memilih apa pun", async ({ browser }) => {
     const context = await browser.newContext({ colorScheme: "dark" });
@@ -15,6 +13,14 @@ test.describe("mode gelap (D-05)", () => {
   });
 
   test("bisa dipaksa terang meski sistem gelap", async ({ browser }) => {
+    const lightContext = await browser.newContext({ colorScheme: "light" });
+    const lightPage = await lightContext.newPage();
+    await lightPage.goto("/");
+    const lightBackground = await lightPage.evaluate(
+      () => getComputedStyle(document.body).backgroundColor,
+    );
+    await lightContext.close();
+
     const context = await browser.newContext({ colorScheme: "dark" });
     const page = await context.newPage();
     await page.goto("/");
@@ -23,7 +29,7 @@ test.describe("mode gelap (D-05)", () => {
     await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
 
     const background = await page.evaluate(() => getComputedStyle(document.body).backgroundColor);
-    expect(background).toBe("rgb(255, 255, 255)");
+    expect(background).toBe(lightBackground);
     await context.close();
   });
 
@@ -50,6 +56,17 @@ test.describe("responsive (bagian 20)", () => {
       await page.setViewportSize({ width, height: 900 });
       await page.goto("/search?q=laskar%20pelangi");
       await expect(page.getByRole("article").first()).toBeVisible();
+
+      const overflow = await page.evaluate(
+        () => document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
+      );
+      expect(overflow).toBe(false);
+    });
+
+    test(`beranda tidak scroll horizontal di lebar ${width}px`, async ({ page }) => {
+      await page.setViewportSize({ width, height: 900 });
+      await page.goto("/");
+      await expect(page.getByRole("heading", { name: "Belum ada edisi Indonesia" })).toBeVisible();
 
       const overflow = await page.evaluate(
         () => document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,

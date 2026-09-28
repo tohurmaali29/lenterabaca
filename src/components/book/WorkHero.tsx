@@ -6,8 +6,6 @@ import { ShelfButton } from "../shelf/ShelfButton";
 import type { ReactNode } from "react";
 
 /**
- * Blok KARYA di halaman detail. RnD R-05 dan 17.2.
- *
  * Sengaja terpisah secara visual dari blok EDISI TERPILIH, dan keduanya
  * terbuka tanpa disclosure (temuan F3).
  */
@@ -24,7 +22,10 @@ export function WorkHero({
   const series = work.seriesId ? getSeries(work.seriesId) : undefined;
 
   return (
-    <section aria-labelledby="judul-karya" className="flex flex-col gap-5 sm:flex-row sm:gap-6">
+    <section
+      aria-labelledby="judul-karya"
+      className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-4 gap-y-5 sm:gap-x-6 lg:grid-cols-[auto_minmax(0,1fr)_auto]"
+    >
       <BookCover
         src={edition.cover.url}
         alt={edition.cover.alt}
@@ -32,24 +33,20 @@ export function WorkHero({
         publisherName={getPublisher(edition.publisherId)?.name ?? ""}
         size="md"
         priority
-        className="self-start shadow-1 sm:cover-lg"
+        className="self-start shadow-1 sm:row-span-2 sm:cover-lg lg:row-span-1"
       />
 
-      <div className="flex min-w-0 flex-1 flex-col gap-2">
-        <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
-          <div className="min-w-0">
-            <p className="text-overline text-ink-500">Karya</p>
+      <div className="flex min-w-0 flex-col gap-2">
+        <div className="min-w-0">
+          <p className="text-overline text-ink-500">Karya</p>
 
-            <h1
-              id="judul-karya"
-              className="font-title text-3xl text-h1 text-ink-900"
-              lang={edition.language}
-            >
-              {edition.title}
-            </h1>
-          </div>
-
-          {actions && <div className="shrink-0 lg:pt-2">{actions}</div>}
+          <h1
+            id="judul-karya"
+            className="font-title text-h1 text-ink-900 sm:text-3xl"
+            lang={edition.language}
+          >
+            {edition.title}
+          </h1>
         </div>
 
         {edition.title !== work.originalTitle && (
@@ -81,6 +78,12 @@ export function WorkHero({
           ))}
         </ul>
       </div>
+
+      {actions && (
+        <div className="col-span-2 sm:col-span-1 sm:col-start-2 lg:col-start-3 lg:row-start-1 lg:pt-6 max-sm:[&>div]:block max-sm:[&>div>button]:w-full max-sm:[&>div>button]:justify-center max-sm:[&>span]:w-full">
+          {actions}
+        </div>
+      )}
     </section>
   );
 }

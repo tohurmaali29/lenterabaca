@@ -1,9 +1,5 @@
 import { expect, test } from "@playwright/test";
 
-/**
- * Alur pencarian. RnD R-01 sampai R-04, dan temuan F6.
- */
-
 test("badge bahasa terlihat di hasil tanpa klik tambahan (R-03, F6)", async ({ page }) => {
   await page.goto("/search?q=laskar%20pelangi");
 
