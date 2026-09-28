@@ -1,10 +1,5 @@
 import { expect, test } from "@playwright/test";
 
-/**
- * Halaman detail dan pemilih edisi. RnD R-05 sampai R-08, R-11.
- * Setiap test di sini memetakan langsung ke temuan F3, F4, atau F7.
- */
-
 const LASKAR = "/book/laskar-pelangi";
 
 test("blok karya dan blok edisi terpisah dan keduanya terbuka (R-05, F3)", async ({ page }) => {

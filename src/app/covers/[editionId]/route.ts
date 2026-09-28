@@ -3,8 +3,6 @@ import { renderCoverSvg } from "@/lib/cover";
 import type { EditionId } from "@/lib/types";
 
 /**
- * Penyaji cover placeholder (RnD D-06).
- *
  * force-static plus generateStaticParams membuat seluruh 59 cover
  * diprarender saat build, jadi disajikan sebagai aset statis tanpa biaya
  * runtime. Tidak memakai next/image karena next/image tidak mengoptimasi SVG

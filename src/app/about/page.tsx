@@ -4,7 +4,8 @@ import Link from "next/link";
 import { DemoTools } from "@/components/about/DemoTools";
 import { Disclosure } from "@/components/ui/Disclosure";
 import { auditFindings, baselineFlow } from "@/data/audit";
-import { catalogStats } from "@/data/catalog";
+import { authorPhotos } from "@/data/authorPhotos";
+import { authors, catalogStats } from "@/data/catalog";
 import { formatCount } from "@/lib/format";
 
 export const metadata: Metadata = {
@@ -14,8 +15,6 @@ export const metadata: Metadata = {
 };
 
 /**
- * Halaman case study. RnD bagian 35.
- *
  * Susunannya sengaja menempatkan bukti sebelum solusi, dan keterbatasan
  * sebagai bagian isi, bukan catatan kaki.
  */
@@ -133,13 +132,41 @@ export default function AboutPage() {
             asli. Keputusan ini diambil untuk menghindari masalah hak cipta dan bersifat sementara.
           </li>
           <li>
-            Data bersifat statis. Tidak ada server, tidak ada akun, dan tidak ada yang
-            dikirim ke mana pun.
+            Data bersifat statis. Tidak ada server, tidak ada akun, dan tidak ada yang dikirim ke
+            mana pun.
           </li>
           <li>Temuan heuristik berasal dari satu orang evaluator.</li>
         </ul>
       </section>
 
+      <section aria-labelledby="judul-kredit-foto" className="flex flex-col gap-3">
+        <h2 id="judul-kredit-foto" className="text-h2 text-ink-900">
+          Kredit foto penulis
+        </h2>
+        <p className="text-body text-ink-500">
+          Foto penulis diambil dari Wikimedia Commons dengan lisensi bebas.
+        </p>
+        <ul className="flex flex-col gap-1.5 text-sm text-ink-700">
+          {authors
+            .filter((author) => authorPhotos[author.slug])
+            .map((author) => {
+              const credit = authorPhotos[author.slug];
+              return (
+                <li key={author.id}>
+                  {author.name}: {credit.artist}, {credit.license},{" "}
+                  <a
+                    href={credit.source}
+                    className="text-accent-600 underline underline-offset-2"
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    sumber
+                  </a>
+                </li>
+              );
+            })}
+        </ul>
+      </section>
     </div>
   );
 }

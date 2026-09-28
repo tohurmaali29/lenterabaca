@@ -5,8 +5,6 @@ import { useCallback, useState } from "react";
 import { cn } from "@/lib/cn";
 
 /**
- * Cover buku dengan penanganan gagal muat. RnD X-01.
- *
  * Ukuran dikunci lewat atribut width dan height supaya tidak menggeser
  * layout saat gambar datang (target CLS di bagian 29). next/image tidak
  * dipakai karena cover berupa SVG, yang tidak dioptimasi next/image dan

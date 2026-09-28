@@ -7,8 +7,6 @@ import { useHydrated, useStore } from "@/hooks/useStore";
 import { forgetSearch, recentSearchStore } from "@/lib/stores";
 
 /**
- * Pencarian terakhir. RnD R-17.
- *
  * Dipakai di halaman discovery sebagai jalan pintas. Setiap entri bisa
  * dihapus satu per satu, karena riwayat pencarian buku bisa jadi hal yang
  * tidak ingin dilihat orang lain di layar yang sama.
@@ -36,7 +34,7 @@ export function RecentSearches({ tone = "default" }: { tone?: "default" | "onIma
         {searches.map((query) => (
           <li
             key={query}
-            className="rounded-pill flex items-center border border-line bg-surface shadow-1 transition-[border-color,background-color,box-shadow] duration-[var(--dur-micro)] hover:border-accent-600 hover:bg-surface-alt hover:shadow-2"
+            className="flex items-center rounded-pill border border-line bg-surface shadow-1 transition-[border-color,background-color,box-shadow] duration-[var(--dur-micro)] hover:border-accent-600 hover:bg-surface-alt hover:shadow-2"
           >
             <Link
               href={`/search?q=${encodeURIComponent(query)}`}
@@ -47,7 +45,7 @@ export function RecentSearches({ tone = "default" }: { tone?: "default" | "onIma
             <button
               type="button"
               onClick={() => forgetSearch(query)}
-              className="rounded-pill flex size-7 items-center justify-center text-ink-400 transition-colors hover:bg-surface-sunken hover:text-ink-900"
+              className="flex size-7 items-center justify-center rounded-pill text-ink-400 transition-colors hover:bg-surface-sunken hover:text-ink-900"
             >
               <X aria-hidden="true" className="size-3" />
               <span className="sr-only">Hapus pencarian {query}</span>

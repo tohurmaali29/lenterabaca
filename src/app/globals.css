@@ -7,70 +7,70 @@
    ========================================================================== */
 
 /* -------------------------------------------------------------------------
-   18.1 Warna - Light
+   Warna - Light
    ------------------------------------------------------------------------- */
 :root {
   color-scheme: light;
 
   /* Permukaan */
-  --surface: #fffdf8;
-  --surface-alt: #f7f2e8;
-  --surface-sunken: #eee5d6;
+  --surface: #f7f6f3;
+  --surface-alt: #ffffff;
+  --surface-sunken: #ebe8e2;
 
   /* Garis */
-  --line: #e7dcc8;
-  --line-strong: #8f7d63;
+  --line: #dedad2;
+  --line-strong: #7d838c;
 
   /* Teks */
-  --ink-900: #211b15;
-  --ink-700: #4b4034;
-  --ink-500: #716555;
-  --ink-400: #6f6252;
+  --ink-900: #16181b;
+  --ink-700: #353a41;
+  --ink-500: #5a616b;
+  --ink-400: #586069;
 
   /* Aksen */
-  --accent-700: #245246;
-  --accent-600: #2f6d5d;
-  --accent-100: #e3efe7;
+  --accent-700: #7f3a05;
+  --accent-600: #a14a06;
+  --accent-100: #fbeedb;
   --accent-on: #ffffff;
 
   /* Badge bahasa */
-  --lang-id-bg: #e4edfb;
-  --lang-id-fg: #17457f;
-  --lang-other-bg: #f0eee8;
-  --lang-other-fg: #4a4842;
+  --lang-id-bg: #d7efe9;
+  --lang-id-fg: #0b5b52;
+  --lang-other-bg: #e9e7e2;
+  --lang-other-fg: #41464d;
 
   /* Rating */
-  --rating-fill: #ad7500;
-  --rating-text: #57451f;
+  --rating-fill: #b06a00;
+  --rating-text: #5a3b05;
 
   /* Semantik */
-  --success-fg: #155e3f;
-  --warning-fg: #7a4e00;
-  --danger-fg: #a3211b;
+  --success-fg: #16663f;
+  --warning-fg: #855000;
+  --danger-fg: #ad251c;
 
   /* Fokus */
-  --focus-ring: #276554;
+  --focus-ring: #a14a06;
 
-  /* 18.4 Elevasi */
+  /* Elevasi */
   --elev-1: 0 1px 2px rgb(0 0 0 / 0.06);
   --elev-2: 0 4px 12px rgb(0 0 0 / 0.08);
   --elev-3: 0 12px 32px rgb(0 0 0 / 0.16);
 
-  /* 18.4 Z-index - tidak ada namespace Tailwind, dipakai lewat var() */
+  /* Z-index - tidak ada namespace Tailwind, dipakai lewat var() */
   --z-header: 10;
   --z-dropdown: 20;
   --z-overlay: 30;
   --z-drawer: 31;
   --z-toast: 40;
 
-  /* 18.4 Ukuran cover, rasio tetap 2:3 */
+  /* Ukuran cover, rasio tetap 2:3 */
   --cover-xs: 40px;
   --cover-sm: 64px;
   --cover-md: 96px;
   --cover-lg: 160px;
   --cover-xl: 220px;
 
-  /* 22 Motion */
+  /* Motion */
   --ease-out: cubic-bezier(0.2, 0.8, 0.25, 1);
   --dur-micro: 120ms;
   --dur-press: 80ms;
@@ -81,7 +81,7 @@
 }
 
 /* -------------------------------------------------------------------------
-   18.2 Warna - Dark
+   Warna - Dark
    Dua blok, sesuai pola di RnD bagian 18.2:
    1. mengikuti preferensi sistem, kecuali user memaksa terang
    2. dipaksa gelap lewat data-theme (dipakai ThemeToggle)
@@ -90,36 +90,36 @@
   :root:not([data-theme="light"]) {
     color-scheme: dark;
 
-    --surface: #14150f;
-    --surface-alt: #1c1d16;
-    --surface-sunken: #24251d;
+    --surface: #121417;
+    --surface-alt: #1b1f24;
+    --surface-sunken: #252a31;
 
-    --line: #32332a;
-    --line-strong: #818375;
+    --line: #2f353d;
+    --line-strong: #7c8591;
 
-    --ink-900: #f4f3ec;
-    --ink-700: #dad8ce;
-    --ink-500: #a9a79d;
-    --ink-400: #a09e94;
+    --ink-900: #eceae4;
+    --ink-700: #cfd3d8;
+    --ink-500: #a3abb4;
+    --ink-400: #9aa3ad;
 
-    --accent-700: #8ed4bb;
-    --accent-600: #6fbfa3;
-    --accent-100: #1f3a32;
-    --accent-on: #10231c;
+    --accent-700: #f7c46e;
+    --accent-600: #f2a93b;
+    --accent-100: #382812;
+    --accent-on: #1a1204;
 
-    --lang-id-bg: #1b2f4c;
-    --lang-id-fg: #a8ccf6;
-    --lang-other-bg: #2a2b22;
-    --lang-other-fg: #cfcdc3;
+    --lang-id-bg: #123430;
+    --lang-id-fg: #7fdcc8;
+    --lang-other-bg: #2a3037;
+    --lang-other-fg: #cdd2d8;
 
-    --rating-fill: #e9b145;
-    --rating-text: #e4d9bd;
+    --rating-fill: #f2a93b;
+    --rating-text: #f1dcb2;
 
     --success-fg: #7fd3aa;
-    --warning-fg: #e0b464;
-    --danger-fg: #f0948d;
+    --warning-fg: #f0c070;
+    --danger-fg: #f39a92;
 
-    --focus-ring: #8ed4bb;
+    --focus-ring: #f2a93b;
 
     --elev-1: 0 1px 2px rgb(0 0 0 / 0.4);
     --elev-2: 0 4px 12px rgb(0 0 0 / 0.45);
@@ -130,36 +130,36 @@
 :root[data-theme="dark"] {
   color-scheme: dark;
 
-  --surface: #14150f;
-  --surface-alt: #1c1d16;
-  --surface-sunken: #24251d;
+  --surface: #121417;
+  --surface-alt: #1b1f24;
+  --surface-sunken: #252a31;
 
-  --line: #32332a;
-  --line-strong: #818375;
+  --line: #2f353d;
+  --line-strong: #7c8591;
 
-  --ink-900: #f4f3ec;
-  --ink-700: #dad8ce;
-  --ink-500: #a9a79d;
-  --ink-400: #a09e94;
+  --ink-900: #eceae4;
+  --ink-700: #cfd3d8;
+  --ink-500: #a3abb4;
+  --ink-400: #9aa3ad;
 
-  --accent-700: #8ed4bb;
-  --accent-600: #6fbfa3;
-  --accent-100: #1f3a32;
-  --accent-on: #10231c;
+  --accent-700: #f7c46e;
+  --accent-600: #f2a93b;
+  --accent-100: #382812;
+  --accent-on: #1a1204;
 
-  --lang-id-bg: #1b2f4c;
-  --lang-id-fg: #a8ccf6;
-  --lang-other-bg: #2a2b22;
-  --lang-other-fg: #cfcdc3;
+  --lang-id-bg: #123430;
+  --lang-id-fg: #7fdcc8;
+  --lang-other-bg: #2a3037;
+  --lang-other-fg: #cdd2d8;
 
-  --rating-fill: #e9b145;
-  --rating-text: #e4d9bd;
+  --rating-fill: #f2a93b;
+  --rating-text: #f1dcb2;
 
   --success-fg: #7fd3aa;
-  --warning-fg: #e0b464;
-  --danger-fg: #f0948d;
+  --warning-fg: #f0c070;
+  --danger-fg: #f39a92;
 
-  --focus-ring: #8ed4bb;
+  --focus-ring: #f2a93b;
 
   --elev-1: 0 1px 2px rgb(0 0 0 / 0.4);
   --elev-2: 0 4px 12px rgb(0 0 0 / 0.45);
@@ -197,7 +197,7 @@
   --color-danger-fg: var(--danger-fg);
   --color-focus-ring: var(--focus-ring);
 
-  /* 18.3 Tipografi. Serif HANYA untuk judul karya dan judul edisi. */
+  /* Tipografi. Serif HANYA untuk judul karya dan judul edisi. */
   --font-ui: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-title: var(--font-source-serif), Georgia, serif;
 
@@ -237,19 +237,19 @@
   --text-overline--letter-spacing: 0.08em;
   --text-overline--font-weight: 600;
 
-  /* 18.4 Radius */
+  /* Radius */
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 14px;
   --radius-xl: 20px;
   --radius-pill: 999px;
 
-  /* 18.4 Elevasi */
+  /* Elevasi */
   --shadow-1: var(--elev-1);
   --shadow-2: var(--elev-2);
   --shadow-3: var(--elev-3);
 
-  /* 18.4 Container. Breakpoint sm/md/lg/xl sudah cocok dengan default. */
+  /* Container. Breakpoint sm/md/lg/xl sudah cocok dengan default. */
   --container-page: 1120px;
 }
 
@@ -284,7 +284,7 @@
     cursor: not-allowed;
   }
 
-  /* 21.1 Fokus selalu terlihat. Tidak pernah outline:none tanpa pengganti. */
+  /* Fokus selalu terlihat. Tidak pernah outline:none tanpa pengganti. */
   :focus-visible {
     outline: 2px solid var(--focus-ring);
     outline-offset: 2px;
@@ -295,7 +295,7 @@
     font-family: var(--font-title);
   }
 
-  /* 22 Reduced motion: semua transform dan animasi dimatikan. */
+  /* Reduced motion: semua transform dan animasi dimatikan. */
   @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
@@ -324,7 +324,7 @@
    Utility khusus produk
    ------------------------------------------------------------------------- */
 
-/* 18.4 Cover selalu rasio 2:3. Lebar dari token, tinggi dihitung. */
+/* Cover selalu rasio 2:3. Lebar dari token, tinggi dihitung. */
 @utility cover-xs {
   width: var(--cover-xs);
   height: calc(var(--cover-xs) * 1.5);
@@ -346,13 +346,37 @@
   height: calc(var(--cover-xl) * 1.5);
 }
 
-/* 21.1 Target sentuh minimal 44x44. */
+/* Hero beranda: foto rak buku di bawah overlay gelap, dengan pendar amber di
+   sekitar kolom pencarian. Selalu gelap di kedua tema supaya teks putih
+   terbaca, jadi warnanya literal dan tidak mengikuti token tema. */
+@utility hero-lantern {
+  background-color: #0e1013;
+  background-image:
+    radial-gradient(60% 90% at 50% 100%, rgb(242 169 59 / 0.22), transparent 70%),
+    radial-gradient(40% 60% at 50% 110%, rgb(242 169 59 / 0.25), transparent 60%),
+    linear-gradient(rgb(14 16 19 / 0.7), rgb(14 16 19 / 0.82)), url("/lenterabaca-banner.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+/* Rak horizontal: bisa digeser tanpa menampilkan scrollbar tebal.
+   relative wajib: tanpa itu, teks sr-only (position absolute) di dalam tile
+   lolos dari clipping overflow dan melebarkan halaman. */
+@utility shelf-scroll {
+  position: relative;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+  scrollbar-color: var(--line) transparent;
+}
+
+/* Target sentuh minimal 44x44. */
 @utility tap-target {
   min-width: 44px;
   min-height: 44px;
 }
 
-/* Lebar konten halaman, termasuk gutter per breakpoint (18.4). */
+/* Lebar konten halaman, termasuk gutter per breakpoint. */
 @utility container-page {
   margin-inline: auto;
   width: 100%;

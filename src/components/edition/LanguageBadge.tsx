@@ -3,8 +3,6 @@ import { cn } from "@/lib/cn";
 import type { LangCode } from "@/lib/types";
 
 /**
- * Penanda bahasa edisi. RnD R-03 dan 21.3.
- *
  * Kode dua huruf yang terlihat diberi aria-hidden, dan bentuk penuhnya
  * disediakan untuk screen reader. Tanpa itu, "ID" akan dibacakan sebagai
  * huruf lepas, bukan sebagai nama bahasa.

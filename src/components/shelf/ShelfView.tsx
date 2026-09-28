@@ -25,8 +25,6 @@ export interface EditionLookup {
 }
 
 /**
- * Isi rak. RnD R-15 dan empty state E-07 serta E-08.
- *
  * Setiap item menyebut edisi yang disimpan, bukan hanya judul karyanya.
  */
 export function ShelfView({ lookup }: { lookup: Record<string, EditionLookup> }) {
@@ -71,7 +69,7 @@ export function ShelfView({ lookup }: { lookup: Record<string, EditionLookup> })
               aria-selected={active}
               onClick={() => setTab(status)}
               className={cn(
-                "rounded-pill tap-target border px-4 text-sm",
+                "tap-target rounded-pill border px-4 text-sm",
                 active
                   ? "border-accent-600 bg-accent-100 font-medium text-accent-700"
                   : "border-line-strong text-ink-700 hover:bg-surface-alt",

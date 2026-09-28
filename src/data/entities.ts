@@ -9,10 +9,9 @@ import type {
   TranslatorId,
 } from "@/lib/types";
 
+import { authorPhotos } from "./authorPhotos";
+
 /**
- * Entitas referensi katalog. Sumber: RnD v2.1 bagian 24.1 dan 25.
- *
- * CATATAN PENTING TENTANG SIFAT DATA INI
  * Ini adalah curated local fixtures, bukan katalog bibliografi.
  * Nama penulis, judul karya, dan nama penerbit adalah organisasi dan karya
  * nyata, tetapi kombinasi edisi, tahun, jumlah halaman, ISBN, dan rating
@@ -28,6 +27,7 @@ const author = (id: string, slug: string, name: string, altNames: string[] = [])
   slug,
   name,
   altNames,
+  photo: authorPhotos[slug]?.file,
 });
 
 const publisher = (
@@ -97,7 +97,6 @@ export const publishers: Publisher[] = [
   publisher("pb-hasta-mitra", "hasta-mitra", "Hasta Mitra", "ID"),
   publisher("pb-serambi", "serambi-ilmu-semesta", "Serambi Ilmu Semesta", "ID", ["Serambi"]),
 
-  // Penerbit asing.
   publisher("pb-bloomsbury", "bloomsbury", "Bloomsbury Publishing", "UK", ["Bloomsbury"]),
   publisher("pb-penguin", "penguin-books", "Penguin Books", "UK", ["Penguin"]),
   publisher("pb-vintage", "vintage-books", "Vintage Books", "US", ["Vintage"]),

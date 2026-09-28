@@ -1,8 +1,6 @@
 import type { Edition, EditionId, Histogram, RatingSummary, Review, WorkId } from "@/lib/types";
 
 /**
- * Aturan agregasi rating. Sumber: RnD v2.1 bagian 24.3.
- *
  * Kenapa average tidak pernah ditulis tangan: kalau average, count, dan
  * histogram sama-sama diisi manual, ketiganya bisa saling bertentangan
  * (misalnya average 4,2 dengan count 3). Di sini histogram adalah satu-satunya

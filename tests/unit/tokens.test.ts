@@ -4,8 +4,6 @@ import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
 
 /**
- * Guard untuk RnD bagian 18.2.
- *
  * Kegagalan yang paling mudah terjadi adalah menambah token
  * warna baru di blok terang lalu lupa menambahkannya di kedua blok gelap,
  * sehingga komponen terlihat benar di terang dan rusak di gelap.
