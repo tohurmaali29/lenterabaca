@@ -30,7 +30,7 @@ test("T1: dari judul Inggris sampai tersimpan sebagai edisi Indonesia", async ({
   await page.waitForTimeout(BEAT * 2);
 
   // Langkah 3: buka buku. Edisi Bahasa Indonesia sudah menjadi edisi terpilih.
-  await card.getByRole("link", { name: "Lihat buku" }).click();
+  await card.getByRole("heading").getByRole("link").click();
   await expect(page.getByText("Edisi terpilih", { exact: true })).toBeVisible();
   await page.waitForTimeout(BEAT * 2);
 

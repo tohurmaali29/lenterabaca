@@ -13,8 +13,6 @@ import {
 } from "@/lib/storage";
 
 /**
- * Lapisan penyimpanan. Sumber: RnD v2.1 bagian 27.2.
- *
  * Yang diuji: kuota penuh, storage diblokir, dan data yang tidak sesuai skema.
  */
 

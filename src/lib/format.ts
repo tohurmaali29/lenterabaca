@@ -1,8 +1,6 @@
 import type { Edition, Format, LangCode } from "@/lib/types";
 
 /**
- * Pemformatan tampilan. Sumber: RnD v2.1 bagian 16.
- *
  * Semua angka dan tanggal lewat Intl dengan locale id-ID, jadi desimal
  * memakai koma dan ribuan memakai titik. Ini bukan detail kosmetik: rating
  * "4.2" terbaca salah oleh pembaca Indonesia.

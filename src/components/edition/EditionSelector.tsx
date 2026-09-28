@@ -13,16 +13,13 @@ import { logEvent, rememberEdition } from "@/lib/stores";
 import type { Edition, EditionId } from "@/lib/types";
 
 /**
- * Pemilih edisi. RnD R-07, 17.3, 21.3, D-08.
- *
  * Memakai Radix Dialog dan RadioGroup, bukan implementasi sendiri, karena
  * ini komponen paling berisiko secara aksesibilitas di seluruh produk:
  * butuh focus trap, Escape, pengembalian fokus ke tombol pemicu, dan
  * penandaan radio yang benar. Radix sudah menangani semuanya (keputusan D-08).
  *
- * Kenapa drawer, bukan halaman: user sedang MEMBANDINGKAN. Memindahkannya
- * ke halaman lain memutus konteks, dan itu salah satu penyebab flow
- * delapan langkah yang diaudit. Halaman /book/[slug]/editions tetap ada
+ * Kenapa drawer, bukan halaman: user sedang MEMBANDINGKAN, dan memindahkannya
+ * ke halaman lain memutus konteks. Halaman /book/[slug]/editions tetap ada
  * sebagai jalur yang bisa dibagikan dan tetap jalan tanpa JavaScript.
  */
 

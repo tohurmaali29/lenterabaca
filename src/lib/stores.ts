@@ -3,7 +3,7 @@ import { KEYS, read, subscribeToKey, write, type Guard, type WriteResult } from 
 import type { AppEvent, Review, ShelfItem, ShelfStatus } from "@/lib/types";
 
 /**
- * Store berbasis useSyncExternalStore. Sumber: RnD v2.1 bagian 27.2.
+ * Store berbasis useSyncExternalStore.
  *
  * Kenapa pola ini dan bukan useState plus useEffect:
  *  - snapshot server selalu nilai kosong, snapshot client dibaca setelah
@@ -120,8 +120,6 @@ function createStore<T>(key: string, guard: Guard<T>, empty: T, seed: () => T): 
   };
 }
 
-/** ------------------------------ Type guard ------------------------------ */
-
 const isArray = (value: unknown): value is unknown[] => Array.isArray(value);
 
 const isShelfItem = (value: unknown): value is ShelfItem => {
@@ -169,8 +167,6 @@ const isSelectedEditions = (value: unknown): value is Record<string, string> =>
 const isStringList: Guard<string[]> = (value): value is string[] =>
   isArray(value) && value.every((entry) => typeof entry === "string");
 
-/** -------------------------------- Store -------------------------------- */
-
 export const shelfStore = createStore<ShelfItem[]>(
   KEYS.shelf,
   guardList(isShelfItem),
@@ -200,8 +196,6 @@ export const recentSearchStore = createStore<string[]>(
 );
 
 export const eventStore = createStore<AppEvent[]>(KEYS.events, guardList(isEvent), [], () => []);
-
-/** ------------------------------- Operasi ------------------------------- */
 
 export const MAX_RECENT_SEARCHES = 8;
 export const MAX_EVENTS = 500;

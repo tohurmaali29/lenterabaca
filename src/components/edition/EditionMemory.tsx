@@ -6,8 +6,6 @@ import { useEffect, useRef } from "react";
 import { logEvent, rememberEdition, selectedEditionStore } from "@/lib/stores";
 
 /**
- * Ingatan edisi terpilih per karya. RnD R-06 dan 27.1.
- *
  * Urutan sumber edisi menurut R-06: parameter URL, lalu localStorage, lalu
  * edisi Bahasa Indonesia terbaru, lalu defaultEditionId. Dua yang terakhir
  * sudah ditangani katalog di server. Komponen ini melengkapi dua yang

@@ -18,8 +18,6 @@ import type { Format, LangCode, PublisherId } from "@/lib/types";
 export const metadata: Metadata = { title: "Hasil pencarian" };
 
 /**
- * Halaman hasil pencarian. RnD R-01 sampai R-04, D-01.
- *
  * Server Component: query dan filter dibaca dari URL, pencarian dijalankan
  * di server, dan hanya FilterBar yang menjadi client island. Hasilnya tombol
  * back bekerja, tautan bisa dibagikan, dan halaman tetap terbaca tanpa
@@ -106,7 +104,7 @@ export default async function SearchPage(props: PageProps<"/search">) {
             </p>
           )}
 
-          <ol className="flex flex-col gap-4">
+          <ol className="grid gap-4 lg:grid-cols-2">
             {response.results.map((result, index) => (
               <li key={result.work.id}>
                 <BookCard
@@ -186,7 +184,7 @@ function NoResults({
           title="Mungkin yang kamu cari"
           body={`Tidak ada yang persis cocok dengan "${query}". Beberapa karya berikut mendekati.`}
         />
-        <ol className="flex flex-col gap-4">
+        <ol className="grid gap-4 lg:grid-cols-2">
           {nearby.map((result) => (
             <li key={result.work.id}>
               <BookCard result={result} headingLevel={2} />

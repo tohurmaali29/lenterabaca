@@ -1,10 +1,5 @@
 import { expect, test } from "@playwright/test";
 
-/**
- * Ingatan edisi, pencarian terakhir, dan log aktivitas.
- * RnD R-06, R-17, R-18, dan bagian 30.
- */
-
 async function readEvents(page: import("@playwright/test").Page) {
   return page.evaluate(() => {
     const raw = window.localStorage.getItem("gr:v1:events");
@@ -60,7 +55,7 @@ test("log aktivitas mencatat alur pencarian sampai simpan (bagian 30)", async ({
   await page.evaluate(() => window.localStorage.removeItem("gr:v1:events"));
 
   await page.goto("/search?q=binatangisme");
-  await page.getByRole("article").first().getByRole("link", { name: "Lihat buku" }).click();
+  await page.getByRole("article").first().getByRole("heading").getByRole("link").click();
 
   await page.getByRole("button", { name: /Ganti edisi/ }).click();
   await page.keyboard.press("Escape");

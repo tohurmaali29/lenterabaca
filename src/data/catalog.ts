@@ -20,8 +20,6 @@ import type {
 } from "@/lib/types";
 
 /**
- * Perakitan katalog. Sumber: RnD v2.1 bagian 24.2 dan 24.3.
- *
  * Dijalankan sekali saat modul dimuat. Tugasnya dua:
  *  1. menurunkan field yang tidak boleh ditulis tangan
  *     (editionIds, availableLanguages, hasIndonesianEdition, ratingSummary)
@@ -82,8 +80,6 @@ export const works: BookWork[] = workSeeds.map((seed) => {
   };
 });
 
-/** ---------------------------- Indeks pencarian id ---------------------------- */
-
 const workById = new Map<string, BookWork>(works.map((item) => [item.id, item]));
 const workBySlug = new Map<string, BookWork>(works.map((item) => [item.slug, item]));
 const editionById = new Map<string, Edition>(editions.map((item) => [item.id, item]));
@@ -111,8 +107,6 @@ for (const item of works) {
     fail(`karya ${item.id} menunjuk seriesId tidak dikenal: ${item.seriesId}`);
   }
 }
-
-/** ------------------------------- API katalog -------------------------------- */
 
 export { editions, authors, publishers, translators, seriesList };
 

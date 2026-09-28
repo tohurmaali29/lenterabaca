@@ -6,17 +6,7 @@ import { useState } from "react";
 import { useHydrated } from "@/hooks/useStore";
 import { isStorageAvailable } from "@/lib/storage";
 
-/**
- * Peringatan persistensi. RnD X-02.
- *
- * Kasus nyata yang sering terlewat: demo dibuka dari in-app browser aplikasi
- * chat, atau dari private mode, dan penyimpanan diblokir. Tanpa banner ini,
- * user mengira aplikasinya rusak, padahal browsernya yang menolak menyimpan.
- */
 export function StorageBanner() {
-  // Diperiksa setelah hidrasi, bukan lewat effect yang memanggil setState:
-  // isStorageAvailable menyentuh window, jadi hasilnya tidak boleh ikut
-  // menentukan markup render pertama.
   const hydrated = useHydrated();
   const [dismissed, setDismissed] = useState(false);
   const blocked = hydrated && !isStorageAvailable();

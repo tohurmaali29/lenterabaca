@@ -6,8 +6,6 @@ import { editions, getPublisher, works } from "@/data/catalog";
 export const metadata: Metadata = { title: "Rak Saya" };
 
 /**
- * Halaman rak. RnD R-15.
- *
  * Data rak ada di localStorage, jadi isinya dirender di client. Katalog
  * tetap dikirim dari server supaya komponen client tidak perlu memuat
  * ulang seluruh fixtures.

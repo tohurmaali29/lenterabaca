@@ -7,8 +7,6 @@ import { getEdition, getPublisher, getWorkBySlug, initialEdition, works } from "
 import type { EditionId } from "@/lib/types";
 
 /**
- * Form review sebagai halaman. RnD D-02 dan 20.
- *
  * Jalur utamanya adalah form di dalam halaman detail. Halaman ini ada karena
  * dua alasan: bisa di-deep-link, dan di layar kecil form penuh halaman lebih
  * baik daripada modal, yang hampir selalu tertutup keyboard virtual.

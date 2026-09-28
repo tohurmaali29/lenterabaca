@@ -1,5 +1,5 @@
 /**
- * Satu-satunya pintu ke Web Storage. Sumber: RnD v2.1 bagian 27.
+ * Satu-satunya pintu ke Web Storage.
  *
  * ESLint menolak localStorage di berkas mana pun selain ini, karena akses
  * langsung dari komponen menyebabkan dua masalah yang sulit dilacak:
@@ -134,8 +134,6 @@ export function subscribeToKey(key: string, callback: () => void): () => void {
   window.addEventListener("storage", handler);
   return () => window.removeEventListener("storage", handler);
 }
-
-/** ------------------------------- Migrasi ------------------------------- */
 
 interface Meta {
   schemaVersion: number;

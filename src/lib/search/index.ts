@@ -5,8 +5,6 @@ import { trigrams } from "@/lib/search/trigram";
 import type { BookWork, LangCode, WorkId } from "@/lib/types";
 
 /**
- * Indeks pencarian. Sumber: RnD v2.1 bagian 26.2.
- *
  * Dibangun sekali saat modul dimuat, bukan setiap ketikan. Dengan 18 karya
  * biayanya tidak terasa, dan strukturnya tetap sama kalau katalog membesar.
  */

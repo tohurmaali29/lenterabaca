@@ -1,9 +1,7 @@
 /**
- * Kemiripan trigram dengan koefisien Dice. Sumber: RnD v2.1 bagian 26.3.
- *
  * Dipakai untuk typo dan ejaan yang meleset sedikit, misalnya "laskar pelagi".
- * Dibuat sendiri, bukan memakai library (keputusan D-07), karena ini kecil,
- * bisa diuji unit, dan bisa dijelaskan di case study.
+ * Dibuat sendiri, bukan memakai library (keputusan D-07), karena ini kecil dan
+ * bisa diuji unit.
  */
 
 /** Ambang minimum agar dianggap mirip (RnD 26.6). */

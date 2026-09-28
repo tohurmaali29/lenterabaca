@@ -1,8 +1,6 @@
 import type { TitleAlias, WorkId } from "@/lib/types";
 
 /**
- * Tabel alias judul. Sumber: RnD v2.1 bagian 26.2.
- *
  * Ini data KURASI MANUAL, bukan hasil algoritma. Untuk pasangan judul yang
  * tidak punya satu kata pun yang sama, misalnya "Animal Farm" dan
  * "Binatangisme", tidak ada cara otomatis menghubungkannya tanpa sumber

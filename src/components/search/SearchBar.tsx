@@ -65,7 +65,7 @@ export function SearchBar({
       {!isHero && (
         <Search
           aria-hidden="true"
-          className="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-ink-400"
+          className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-ink-400"
         />
       )}
 
@@ -83,7 +83,7 @@ export function SearchBar({
         onKeyDown={(event) => {
           if (event.key === "Escape") setIsFocused(false);
         }}
-        placeholder="Cari judul, penulis, atau ISBN"
+        placeholder={isHero ? "Cari judul, penulis, atau ISBN" : "Cari buku"}
         autoComplete="off"
         aria-expanded={showSuggestions}
         aria-controls={showSuggestions ? panelId : undefined}
@@ -91,7 +91,9 @@ export function SearchBar({
           "w-full rounded-lg border border-line-strong bg-surface text-ink-900 shadow-1 placeholder:text-ink-400",
           "transition-[border-color,box-shadow,background-color] duration-[var(--dur-dropdown)] ease-[var(--ease-out)]",
           "hover:border-accent-600 focus:border-accent-600 focus:shadow-2",
-          isHero ? "h-12 pr-14 pl-4 text-body-lg sm:h-[52px] lg:h-14" : "h-10 pr-9 pl-9 text-body",
+          isHero
+            ? "h-12 pr-14 pl-4 text-body-lg sm:h-[52px] lg:h-14"
+            : cn("h-10 pl-9 text-body", value.length > 0 ? "pr-9" : "pr-3"),
         )}
       />
 
@@ -130,7 +132,10 @@ export function SearchBar({
       {isHero && (
         <p
           id={hintId}
-          className={cn("mt-2 text-sm", tone === "onImage" ? "text-white/80" : "text-ink-500")}
+          className={cn(
+            "mt-2 text-center text-sm",
+            tone === "onImage" ? "text-white/80" : "text-ink-500",
+          )}
         >
           Bisa pakai judul asli maupun judul terjemahan Indonesia.
         </p>
